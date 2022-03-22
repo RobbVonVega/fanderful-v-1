@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="create-head">
+    <ion-buttons class="button-container">
+      <ion-button
+        class="modal-buttons transparent-button"
+        fill="clear"
+        (click)="dismiss()"
+        shape="round"
+      >
+        <ion-icon
+          class="share"
+          slot="icon-only"
+          name="chevron-back-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <p class="modal-title">crear/editar playlist</p>
+  </div>
+
+  <ion-card class="edit-playlist">
+    <div class="container">
+      <ion-thumbnail class="img-container">
+        <ion-img
+          src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+        ></ion-img>
+      </ion-thumbnail>
+      <ion-input type="text" placeholder="playlists de fans"></ion-input>
+      <ion-select placeholder="Todo" interface="popover">
+        <ion-select-option value="todo">Todo</ion-select-option>
+        <ion-select-option value="anime">Anime</ion-select-option>
+        <ion-select-option value="peliculas">Peliculas</ion-select-option>
+        <ion-select-option value="TV">Series de TV</ion-select-option>
+        <ion-select-option value="VG">Videojuegos</ion-select-option>
+        <ion-select-option value="lugares">Lugares</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-card>
+  <ion-button
+    (click)="dismiss()"
+    expand="block"
+    color="primary"
+    class="create-button"
+  >
+    enviar
+  </ion-button>
+</ion-content>

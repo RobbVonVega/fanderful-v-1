@@ -1,0 +1,44 @@
+<ion-content>
+  <div class="all-container">
+    <div id="background"></div>
+    <div class="container">
+      <p>
+        conoce que <br />
+        puedes poner <br />
+        en tus playlists.
+      </p>
+      <div class="tutorial-info">
+        <div class="left-side">
+          <div class="tuto-square" id="cine">
+            <h1>peliculas</h1>
+          </div>
+          <div class="tuto-square" id="series">
+            <h1>series</h1>
+          </div>
+          <div class="tuto-square" id="videojuegos">
+            <h1>video<br />juegos</h1>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="tuto-square" id="anime">
+            <h1>anime</h1>
+          </div>
+          <div class="tuto-square" id="lugares">
+            <h1>lugares</h1>
+          </div>
+        </div>
+      </div>
+      <ion-buttons class="buttons">
+        <ion-button
+          id="continue"
+          (click)="onClick()"
+          routerLink="/tabs"
+          fill="clear"
+        >
+          continuar
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>

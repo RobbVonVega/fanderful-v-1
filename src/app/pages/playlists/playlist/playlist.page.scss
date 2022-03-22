@@ -1,0 +1,120 @@
+.playlist-back-button {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  z-index: 100;
+  color: #ffffff;
+}
+
+.playlist-img-container {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  ion-thumbnail {
+    height: 200px;
+    width: 200px;
+    border-radius: 0.5em;
+    overflow: hidden;
+  }
+  .play-name {
+    align-self: flex-start;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.playlist-description {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .info {
+    width: 65%;
+    .user-info {
+      margin: 5px 0 5px 0;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      ion-thumbnail {
+        height: 20px;
+        width: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .username {
+        color: #cecece;
+        font-size: 14px;
+        padding-left: 5px;
+      }
+    }
+    .info-specific {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .type {
+        font-size: 14px;
+        color: #66686b;
+      }
+      .playlist-activity {
+        padding-top: 2px;
+        font-size: 14px;
+        color: #66686b;
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    right: 0;
+    bottom: 0;
+    gap: 7px;
+    .ent-buttons {
+      border-radius: 25px;
+      .share {
+        height: 27px;
+        width: 27px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+  .sc-ion-buttons-md-s .button-has-icon-only.button-clear {
+    --padding-top: 0px;
+    --padding-end: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .sc-ion-buttons-ios-s ion-button {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.md .prf-description {
+  width: 94%;
+}
+.md .playlist-back-button {
+  left: 8px;
+  top: 10px;
+}

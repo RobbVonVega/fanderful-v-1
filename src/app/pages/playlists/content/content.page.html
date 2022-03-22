@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <ion-back-button
+    class="content-back-button"
+    defaultHref="/"
+    text=""
+  ></ion-back-button>
+
+  <div class="content-img-container">
+    <ion-thumbnail>
+      <img
+        src="https://miro.medium.com/max/1400/1*402gmgZpnLhLqZFKaA4gCQ.jpeg"
+      />
+    </ion-thumbnail>
+    <div class="content-name">Be More Chill</div>
+    <div class="content-info">Películas | Musicales | 2015</div>
+  </div>
+
+  <div class="contenido-relacionado">
+    <div class="container">
+      <div class="description">
+        <div class="title">Sinopsis</div>
+      </div>
+    </div>
+    <ion-buttons class="button-container">
+      <ion-button
+        class="ent-buttons secondary-button"
+        (click)="openShareModal()"
+      >
+        <ion-icon
+          class="share"
+          slot="icon-only"
+          name="share-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button
+        class="ent-buttons primary-button"
+        (click)="openPlaylistModal()"
+      >
+        <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <div class="sinopsis">
+    <p>Jeremy Heere es un idiota promedio de la escuela secundaria. Día tras día, se queda mirando a la hermosa Christine,
+      la chica que nunca podrá tener, y secamente toma nota de las pequeñas humillaciones que vienen hacia él. Hasta el día
+      en que se entera de la "squip". Una supercomputadora del tamaño de una pildora que tragas, la squip está gradantizado
+      para traer lo que más deseas en la vida. Incluyéndole sobretodo, desde qué ropa ponerse, a la manera de hablar y caminar,
+      la squip transforma a Jeremy de un completo ñoño a una de las personas más cool de la clase. Pronto, es amigo de quienes
+      lo atormentaban y tiene la atención de las chicas más guapas de la escuela. Pero Jeremy descubre que hay un lado oscuro
+      a ceder el control sobre tu vida, y que puede tener desastrosas consecuencias.
+    </p>
+  </div>
+</ion-content>

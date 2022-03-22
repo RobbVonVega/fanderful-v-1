@@ -1,0 +1,90 @@
+.pp-container {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  ion-thumbnail {
+    height: 130px;
+    width: 130px;
+    border-radius: 10em;
+    overflow: hidden;
+  }
+}
+
+.prf-description {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .info {
+    width: 65%;
+    .username {
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .desc-edit {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .count {
+        font-size: 14px;
+        color: #66686b;
+      }
+      .edit-button {
+        font-size: 12px;
+        color: #66686b;
+        padding-left: 5px;
+        height: 18px;
+        width: 20px;
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    right: 0;
+    bottom: 0;
+    gap: 7px;
+    .ent-buttons {
+      border-radius: 25px;
+      .share {
+        height: 27px;
+        width: 27px;
+        padding-bottom: 2px;
+      }
+      .add {
+        height: 35px;
+        width: 35px;
+      }
+    }
+  }
+  .sc-ion-buttons-md-s .button-has-icon-only.button-clear {
+    --padding-top: 0px;
+    --padding-end: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .sc-ion-buttons-ios-s ion-button {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.md .prf-description {
+  width: 94%;
+}

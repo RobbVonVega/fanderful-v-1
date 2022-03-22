@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+  <ion-back-button
+    class="location-back-button"
+    defaultHref="/"
+    text=""
+  ></ion-back-button>
+
+  <div class="location-img-container">
+    <ion-thumbnail>
+      <img
+        src="https://fastly.4sqi.net/img/general/600x600/18662670_2IIJmRd-YGbXIjgud07GAu95kk44vEE7hadXmpPUHkg.jpg"
+      />
+    </ion-thumbnail>
+    <div class="location-name">Dumont</div>
+    <div class="location-info">Nueva Jork, Estados Unidos</div>
+  </div>
+
+  <div class="contenido-relacionado">
+    <div class="container">
+      <div class="description">
+        <div class="title">Acerca de este lugar</div>
+      </div>
+    </div>
+    <ion-buttons class="button-container">
+      <ion-button
+        class="ent-buttons secondary-button"
+        (click)="openShareModal()"
+      >
+        <ion-icon
+          class="share"
+          slot="icon-only"
+          name="share-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button
+        class="ent-buttons primary-button"
+        (click)="openPlaylistModal()"
+      >
+        <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <div class="acerca">
+    <p>Dumont es un borough ubicado en el condado de Bergen en el estado estadounidense de Nueva Jersey. En el año 2000 tenía una población de 17.503 habitantes y una densidad poblacional de 3,396.0 personas por km².</p>
+  </div>
+</ion-content>

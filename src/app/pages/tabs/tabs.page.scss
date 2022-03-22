@@ -1,0 +1,47 @@
+
+
+ion-tab-bar{
+    height: 70px;
+    border: #ffffff;
+    --color: #2A2E32;
+    justify-content: end;
+}
+
+// ion-tab-bar{
+//     background: #2A2E32;
+// }
+
+ion-tab-button{
+    --color: #666666;
+    --color-focused: #474747;
+    --color-selected: #FFFFFF;
+}
+
+ion-icon{
+    fill: #666666;
+}
+
+.dis-icon{
+    height: 31px;
+    width: 29px;
+}
+
+.search-icon{
+    height: 29px;
+    width: 29px;
+}
+
+.rank-icon{
+    height: 29px;
+    width: 40px;
+}
+
+.inbox-icon{
+    height: 33px;
+    width: 35px;
+}
+
+.play-icon{
+    height: 31px;
+    width: 31px;
+}

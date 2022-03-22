@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,170 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "~swiper/scss";
+@import "~swiper/scss/pagination";
+
+.ion-list {
+  background: #212529;
+}
+
+.fanderful-color {
+  color: #ff7f34;
+}
+
+ion-toolbar {
+  --min-height: 65px;
+}
+
+ion-title {
+  font-size: 38px;
+}
+
+ion-card {
+  .info {
+    width: 93%;
+    height: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    .container {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      .img-container {
+        height: 76px;
+        width: 76px;
+        border-radius: 0.5em;
+        overflow: hidden;
+      }
+      .description {
+        padding-left: 13px;
+        height: 76px;
+        width: 75%;
+        .title {
+          font-size: 20px;
+          font-weight: bold;
+          color: #ffffff;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .type {
+          font-size: 14px;
+          color: #949698;
+        }
+        .genre {
+          font-size: 14px;
+          color: #949698;
+        }
+        .year {
+          font-size: 14px;
+          color: #949698;
+        }
+      }
+    }
+    .button-container {
+      width: 25%;
+      position: absolute;
+      display: flex;
+      align-items: flex-end;
+      justify-content: end;
+      right: 0;
+      bottom: 0;
+      gap: 7px;
+
+      .ent-buttons {
+        border-radius: 25px;
+        .share {
+          height: 25px;
+          width: 25px;
+          padding-bottom: 2px;
+        }
+        .fan-favourite {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.location {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.playlist {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.profile {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .info {
+    .container {
+      .img-container {
+        border-radius: 3em;
+      }
+    }
+  }
+}
+
+.sc-ion-buttons-md-s .button-has-icon-only.button-clear {
+  --padding-top: 0px;
+  --padding-end: 0px;
+  --padding-bottom: 0px;
+  --padding-start: 0px;
+  width: 38px;
+  height: 38px;
+}
+
+.sc-ion-buttons-ios-s ion-button {
+  --padding-start: 0px;
+  --padding-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  width: 38px;
+  height: 38px;
+}
+
+.primary-button {
+  background: #ff7f34;
+  color: #ffffff;
+}
+
+.secondary-button {
+  background: #696c6f;
+  color: #ffffff;
+}
+
+ion-toast{
+  --height: 50px;
+  --border-radius: 0.5em;
+}

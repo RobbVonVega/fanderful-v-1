@@ -1,0 +1,53 @@
+:root {
+  .popover-content {
+    left: 0 !important;
+    width: 100%;
+  }
+}
+
+ion-select {
+  width: 100%;
+  max-width: 412px;
+  padding-left: 16px;
+  padding-right: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.ios + {
+  ion-select {
+    margin-top: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  ion-segment {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    ion-segment-button{
+      --indicator-color: #ff7f34;
+    }
+  }
+}
+
+.md + {
+  ion-select {
+    margin-top: 7px;
+  }
+}
+
+.container {
+  .rank-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 76px;
+  }
+  .description {
+    padding-left: 0;
+    width: 60%;
+  }
+}

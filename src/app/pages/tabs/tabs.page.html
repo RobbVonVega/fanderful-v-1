@@ -1,0 +1,43 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="discover" (click)="changeDisIcon()">
+      <ion-icon
+        class="dis-icon"
+        [src]="isDisSelected ? clickedDisIcon : disIcon"
+      ></ion-icon>
+      <ion-label>Discover</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search" (click)="changeSearchIcon()">
+      <ion-icon
+        class="search-icon"
+        [src]="isSearchSelected ? clickedSearchIcon : searchIcon"
+      ></ion-icon>
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="rankings" (click)="changeRankIcon()">
+      <ion-icon
+        class="rank-icon"
+        [src]="isRankSelected ? clickedRankIcon : rankIcon"
+      ></ion-icon>
+      <ion-label>Rankings</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="inbox" (click)="changeInboxIcon()">
+      <ion-icon
+        class="inbox-icon"
+        [src]="isInboxSelected ? clickedInboxIcon : inboxIcon"
+      ></ion-icon>
+      <ion-label>Inbox</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="playlists" (click)="changePlaylistsIcon()">
+      <ion-icon
+        class="play-icon"
+        [src]="isPlaylistsSelected ? clickedPlaylistsIcon : playlistsIcon"
+      ></ion-icon>
+      <ion-label>Playlists</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

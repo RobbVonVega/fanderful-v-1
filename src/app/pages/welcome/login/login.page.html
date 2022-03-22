@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-back-button
+    class="login-back-button"
+    defaultHref="/"
+    text=""
+  ></ion-back-button>
+
+  <div class="all-container">
+    <div id="background"></div>
+    <div class="container">
+      <div class="logo-container">
+        <img class="logotype" src="../../../assets/tab-icons/0-Logotipo.svg" />
+      </div>
+      <div class="form-login">
+        <div class="username">
+          <ion-input type="text" placeholder="username"></ion-input>
+        </div>
+        <div class="password">
+          <ion-input type="password" placeholder="contraseña"></ion-input>
+        </div>
+        <p>
+          ¿Olvidaste tu <b>contraseña?</b>
+        </p>
+      </div>
+      <ion-buttons class="buttons">
+        <ion-button id="signup" (click)="onClick()" routerLink="/tabs" shape="round" fill="solid">
+          ingresar
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>

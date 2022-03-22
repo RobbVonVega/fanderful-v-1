@@ -1,0 +1,123 @@
+.location-back-button {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  z-index: 100;
+  color: #ffffff;
+}
+
+.location-img-container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  ion-thumbnail {
+    margin-top: 60px;
+    height: 100vw;
+    width: 100vw;
+    overflow: hidden;
+    padding: 5vw;
+    img {
+      border-radius: 0.5em;
+    }
+  }
+  .location-name {
+    width: 90%;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: end;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    white-space: normal;
+  }
+  .location-info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #66686b;
+  }
+}
+
+.contenido-relacionado {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .container {
+    .description {
+      .title {
+        font-weight: 500;
+        font-size: 20px;
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    right: 0;
+    bottom: 0;
+    gap: 7px;
+    .ent-buttons {
+      border-radius: 25px;
+      .share {
+        height: 27px;
+        width: 27px;
+        padding-bottom: 2px;
+      }
+      .add {
+        height: 35px;
+        width: 35px;
+      }
+    }
+  }
+  .sc-ion-buttons-md-s .button-has-icon-only.button-clear {
+    --padding-top: 0px;
+    --padding-end: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .sc-ion-buttons-ios-s ion-button {
+    --padding-start: 0px;
+    --padding-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.acerca {
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  margin-top: 10px;
+  width: 90%;
+  p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #cecece;
+  }
+}
+
+.md .prf-description {
+  width: 94%;
+}
+.md .playlist-back-button {
+  left: 8px;
+  top: 10px;
+}

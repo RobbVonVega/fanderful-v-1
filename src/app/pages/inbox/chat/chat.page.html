@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar class="chat-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/inbox" text=""></ion-back-button>
+    </ion-buttons>
+    <div class="user" tappable routerLink="/fan-profile">
+      <ion-thumbnail>
+        <img src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg" />
+      </ion-thumbnail>
+      <div class="user-info">
+        <div class="username">clingyxbunny</div>
+        <div class="activity">online</div>
+      </div>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()" fill="clear" shape="round">
+        <ion-icon slot="start" name="ellipsis-horizontal"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="chat viewOrganizer">
+  <div class="msgSpace">
+    <div>
+      <ul class="msg">
+        <li class="date"><span>yesterday</span></li>
+
+        <li class="second">
+          <div class="text">Te puedo mostrar musicales para variar :D</div>
+          <time>07:18 AM</time>
+        </li>
+
+        <li class="second">
+          <div class="text">
+            Voy a pasarte mis favoritos, debes verlo en ese orden porque son del mejor hasta el mas turro
+          </div>
+          <time>07:18 AM</time>
+        </li>
+
+        <li class="first">
+          <div class="text">Musicales?</div>
+          <time>07:18 AM</time>
+        </li>
+        
+        <li class="second">
+          <div class="text">Sí, sí</div>
+          <time>07:18 AM</time>
+        </li>
+        <li class="first">
+          <div class="text">Está bien, musicales</div>
+          <time>07:18 AM</time>
+        </li>
+        <li class="second shared">
+          <div>
+            <ion-card
+              class="shared-content"
+              button
+              routerLink="/playlists/content"
+            >
+              <div class="info">
+                <div class="container">
+                  <ion-thumbnail class="img-container">
+                    <ion-img
+                      src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+                    ></ion-img>
+                  </ion-thumbnail>
+                  <div class="description">
+                    <div class="title">
+                      King george supremacy
+                    </div>
+                    <div class="type">Películas Playlist</div>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+          <time>07:18 AM</time>
+        </li>
+        <li class="second shared">
+          <div>
+            <ion-card class="shared-user" button routerLink="/fan-profile">
+              <div class="info">
+                <div class="container">
+                  <ion-thumbnail class="img-container">
+                    <ion-img
+                      src="https://i.pinimg.com/236x/6e/32/07/6e320799e46f25b8d1ad612bea92065b.jpg"
+                    ></ion-img>
+                  </ion-thumbnail>
+                  <div class="description">
+                    <div class="title">
+                      clingyxbunny
+                    </div>
+                    <div class="type">User</div>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+          <time>07:18 AM</time>
+        </li>
+
+        <li class="second">
+          <div class="text">Para que veas más de mis playlists</div>
+          <time>07:18 AM</time>
+        </li>
+        <li class="first">
+          <div class="text">Gracias, ahorita las checo uwu</div>
+          <time>07:19 AM</time>
+        </li>
+        <li class="first shared">
+          <div>
+            <ion-card class="shared-location" button routerLink="/playlists/location">
+              <div class="info">
+                <div class="container">
+                  <ion-thumbnail class="img-container">
+                    <ion-img
+                      src="https://fastly.4sqi.net/img/general/width960/18662670_2IIJmRd-YGbXIjgud07GAu95kk44vEE7hadXmpPUHkg.jpg"
+                    ></ion-img>
+                  </ion-thumbnail>
+                  <div class="description">
+                    <div class="title">
+                      Dumont
+                    </div>
+                    <div class="type">NJ, USA</div>
+                    <div class="type">Lugar</div>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+          <time>15:30 PM</time>
+        </li>
+        <li class="first shared">
+          <div>
+            <ion-card class="shared-content" button routerLink="/playlists/content">
+              <div class="info">
+                <div class="container">
+                  <ion-thumbnail class="img-container">
+                    <ion-img
+                      src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+                    ></ion-img>
+                  </ion-thumbnail>
+                  <div class="description">
+                    <div class="title">
+                      Filming 
+                    </div>
+                    <div class="type">General Playlist</div>
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+          <time>15:30 PM</time>
+        </li>
+        <li class="first">
+          <div class="text">Para futuros proyectos</div>
+          <time>15:31 PM</time>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="input">
+    <ion-input id="msgInput" placeholder="escribe aquí"></ion-input>
+    <ion-buttons>
+      <ion-button fill="clear" class="send primary-button">
+        <ion-icon slot="icon-only" name="send"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+</ion-content>

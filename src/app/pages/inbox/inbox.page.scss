@@ -1,0 +1,28 @@
+.text-username {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+//preguntar como cambiar el tamano del boton
+ion-card {
+  height: 75px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  ion-avatar {
+    height: 40px;
+    width: 40px;
+  }
+  ion-item {
+    --highlight-height: 75px;
+    --min-height: 75x;
+    ion-label {
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

@@ -1,0 +1,341 @@
+$bkgChat: #222529;
+$primary: #ff7f34;
+$secondary: #32363a;
+$greyLight: #141414;
+$greyChange: #7b808b;
+
+// basic
+
+.chat-toolbar {
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-thumbnail {
+      width: 38px;
+      height: 38px;
+      overflow: hidden;
+      border-radius: 100px;
+    }
+    .user-info {
+      padding-left: 10px;
+      .username {
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .activity {
+        font-size: 12px;
+        font-weight: 300;
+      }
+    }
+  }
+  ion-buttons {
+    ion-back-button {
+      width: 42px;
+      height: 42px;
+      padding: 0px;
+      border-radius: 100px;
+      color: #ffffff;
+    }
+    ion-button {
+      width: 42px;
+      height: 42px;
+      padding: 0px;
+      border-radius: 100px;
+      ion-icon {
+        margin: 0;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.chat {
+  overflow: hidden;
+  .msgSpace {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    & > div {
+      display: block;
+      width: 100%;
+      height: calc(100% - 90px);
+      overflow-y: scroll;
+    }
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(
+        180deg,
+        rgba($bkgChat, 1) 0%,
+        rgba($bkgChat, 0) 100%
+      );
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 88px;
+      left: 0px;
+      z-index: 1;
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(
+        180deg,
+        rgba($bkgChat, 0) 0%,
+        rgba($bkgChat, 1) 100%
+      );
+    }
+  }
+  .msg {
+    display: block;
+    float: left;
+    width: 100%;
+    //max-height: calc(100% - 110px);
+    padding: 0px 20px 20px 20px;
+    margin: 0px;
+    list-style: none;
+    li {
+      display: block;
+      position: relative;
+      float: right;
+      width: 100%;
+      height: auto;
+      margin: 20px 0px 0px 0px;
+      &.date {
+        display: block;
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 26px;
+        text-align: center;
+        margin: 40px auto 0px auto;
+        span {
+          display: inline-block;
+          width: auto !important;
+          height: 26px;
+          text-align: center;
+          margin: 0px auto;
+          padding: 0px 10px 0px 10px;
+          font-size: 10px;
+          line-height: 28px;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: $greyChange;
+          background: $secondary;
+          border-radius: 8px;
+        }
+      }
+      .text {
+        display: block;
+        width: auto;
+        max-width: 280px;
+        height: auto;
+        padding: 10px 20px 10px 20px;
+        overflow-wrap: break-word;
+      }
+      time {
+        display: block;
+        position: absolute;
+        top: calc(50% - 16px);
+        width: auto;
+        height: 32px;
+        font-size: 10px;
+        line-height: 32px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $greyChange;
+      }
+    }
+    .shared {
+      div {
+        padding: 6px 6px 6px 6px;
+        max-width: 280px;
+        ion-card {
+          --background: #202020;
+          width: 265px;
+          margin: 0;
+          border-radius: 10px;
+          .info {
+            display: contents;
+            .container {
+              border-radius: 0;
+              background: transparent;
+              .description {
+                padding: 0 0 0 6px;
+                border-radius: 0;
+                background: transparent;
+                width: 72%;
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                .title {
+                  border-radius: 0;
+                  padding: 0;
+                  width: 100%;
+                  background: transparent;
+                  font-size: 16px;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  -webkit-box-pack: end;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  display: -webkit-box;
+                  white-space: normal;
+                }
+                .type {
+                  font-size: 13px;
+                  border-radius: 0;
+                  padding: 3px 0 0 0;
+                  background: transparent;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .input {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%, 0);
+    width: 92%;
+    height: 60px;
+    padding: 6px;
+    border-radius: 10px;
+    background: $secondary;
+    ion-input {
+      --padding-start: 8px;
+      width: 70%;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    ion-buttons {
+      margin-left: 10px;
+      ion-button {
+        display: block;
+        width: 48px;
+        height: 48px;
+        padding: 0px;
+        border-radius: 100px;
+        border: 0px;
+        outline: 0px;
+        background: $primary;
+        ion-icon {
+          height: 24px;
+          width: 24px;
+          padding-left: 2px;
+        }
+      }
+    }
+  }
+}
+
+.shared-user {
+  .info {
+    .container {
+      .img-container {
+        border-radius: 50px;
+      }
+      .description {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// first view
+
+.chat.viewOrganizer {
+  .msg {
+    li {
+      &.first div {
+        float: right;
+        border-radius: 15px 15px 5px 15px;
+        background: $primary;
+      }
+
+      &.first ~ li.first + li.first,
+      &.first + li.first {
+        margin: 6px 0px 0px 0px;
+      }
+      &.first ~ li.first + li.first div,
+      &.first + li.first div {
+        border-radius: 15px 5px 5px 15px;
+      }
+      &.second div {
+        float: left;
+        border-radius: 15px 15px 15px 5px;
+        background: $secondary;
+      }
+      &.second ~ li.second + li.second,
+      &.second + li.second {
+        margin: 6px 0px 0px 0px;
+      }
+      &.second ~ li.second + li.second div,
+      &.second + li.second div {
+        border-radius: 5px 15px 15px 5px;
+      }
+      &.img div {
+        padding: 6px 6px 0px 6px;
+      }
+      &.first.img .caption {
+        float: left;
+        padding: 0px 6px 10px 14px;
+        color: #ffffff;
+      }
+      &.second.img .caption {
+        float: left;
+        padding: 0px 14px 10px 6px;
+        color: #ffffff;
+      }
+      &.first img {
+        border-radius: 16px 16px 4px 16px;
+      }
+      &.first ~ li.first + li.first img,
+      &.first + li.first img {
+        border-radius: 16px 4px 4px 16px;
+      }
+      &.second img {
+        border-radius: 16px 16px 16px 4px;
+      }
+      &.second ~ li.second + li.second img,
+      &.second + li.second img {
+        border-radius: 4px 16px 16px 4px;
+      }
+      time {
+        color: $greyChange;
+      }
+      &.first time {
+        left: 0px;
+      }
+      &.second time {
+        right: 0px;
+      }
+      &.shared div {
+        background: #202020;
+      }
+    }
+  }
+}
+
+.send,
+.input,
+.modalAttachment {
+  transition: 0.5s ease-out all;
+  -moz-transition: 0.5s ease-out all;
+  -webkit-transition: 0.5s ease-out all;
+}

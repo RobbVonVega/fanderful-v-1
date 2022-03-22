@@ -1,0 +1,185 @@
+<ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <div class="f-title">
+      <ion-title size="large"
+        >inbox<span class="fanderful-color">.</span></ion-title
+      >
+    </div>
+  </ion-toolbar>
+
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list lines="none" color="primary">
+    <ion-card button routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">clingyxbunny</h2>
+          <p>Vanessa, ¿por qué hablamos en español?</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">2</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/8a/bc/83/8abc83595ae3b4bf21f2783a90b968f0.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">_peachxbaby</h2>
+          <p>You know my birthday is tomorrow, right?...</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">42</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/1a/ae/a7/1aaea7b2065a5caec5d556c67bf638e6.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">panecito.integral</h2>
+          <p>Quiero sentir tu cuerpo juntito al mío...</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">57</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/a7/78/ff/a778ff15d07a279bc6c462b2cf3898e2.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">nikevoTM</h2>
+          <p>Te ha enviado una Playlist</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">9</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/01/ff/aa/01ffaa6df45088a48e2aa028c56fe1d9.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">marr.diiii</h2>
+          <p>I know what you've beeen up to...</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">1</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/60/bc/00/60bc004177323f3ec8c9184421f53cc4.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">mylove.forFrdy</h2>
+          <p>Te enviado un Fan Profile</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">5</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/43/28/66/43286687e9495e61c4645d1e750e7bdc.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">bbyMyPhone</h2>
+          <p>何か変なことを教えてくれませんか？あなたは私の妻になりますか？</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">362</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/49/c3/88/49c3882e655da00e460ff81641ebbf7e.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">anna19379</h2>
+          <p>Te ha enviado una Playlist</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">8</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/24/4b/c4/244bc4e865d1cd3a9c329098440db556.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">duwu.dewe</h2>
+          <p>Ha compartido Contenido</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">25</ion-badge>
+      </ion-item>
+    </ion-card>
+
+    <ion-card button (click)="buttonClick()" routerLink="/inbox/chat">
+      <ion-item detail>
+        <ion-avatar slot="start">
+          <img
+            src="https://i.pinimg.com/236x/6c/72/c4/6c72c49e4e41db7e8448bd1bbe0e7291.jpg"
+          />
+        </ion-avatar>
+
+        <ion-label>
+          <h2 class="text-username">ʚ stella ɞ</h2>
+          <p>Stardew Valley its an open-ended country life rpg...</p>
+        </ion-label>
+
+        <ion-badge slot="end" color="primary" mode="ios">1</ion-badge>
+      </ion-item>
+    </ion-card>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="all-container">
+    <div id="background"></div>
+    <div class="container">
+      <div class="logo-container">
+        <img class="logo" src="../../../assets/tab-icons/0-Logo.svg" />
+        <div class="welcome">
+          <p>Bienvenido a</p>
+          <img
+            class="logotype"
+            src="../../../assets/tab-icons/0-Logotipo.svg"
+          />
+        </div>
+      </div>
+      <ion-buttons class="buttons">
+        <ion-button
+          id="login"
+          (click)="onClick()"
+          routerLink="/welcome/login"
+          shape="round"
+          fill="solid"
+        >
+          ingresar
+        </ion-button>
+        <ion-button
+          id="signup"
+          (click)="onClick()"
+          routerLink="/welcome/signup"
+          shape="round"
+          fill="outline"
+        >
+          regístrate
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </div>
+</ion-content>

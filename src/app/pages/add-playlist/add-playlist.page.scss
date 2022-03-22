@@ -1,0 +1,37 @@
+ion-content{
+    background: #212529;
+}
+
+.add-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100px;
+  width: 100%;
+  .button-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .modal-buttons {
+      //   left: 15px;
+      //   top: 50px;
+      //   border-radius: 25px;
+      .share {
+        height: 25px;
+        width: 25px;
+        padding-right: 2px;
+      }
+    }
+  }
+}
+
+.transparent-button {
+  background: transparent;
+  color: #ffffff;
+}

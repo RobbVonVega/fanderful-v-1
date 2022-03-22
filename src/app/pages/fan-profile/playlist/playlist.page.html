@@ -1,0 +1,260 @@
+<ion-content [fullscreen]="true">
+  <ion-back-button
+    class="playlist-back-button"
+    defaultHref="/"
+    text=""
+  ></ion-back-button>
+
+  <div class="playlist-img-container">
+    <ion-thumbnail>
+      <img
+        src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+      />
+    </ion-thumbnail>
+    <div class="play-name">King Jorge Supremacy</div>
+  </div>
+
+  <div class="playlist-description">
+    <div class="info">
+      <div
+        class="user-info"
+        (click)="test()"
+        tappable
+        routerLink="/fan-profile"
+      >
+        <ion-thumbnail>
+          <img
+            src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
+          />
+        </ion-thumbnail>
+        <div class="username">clingyxbunny</div>
+      </div>
+      <div class="info-specific">
+        <div class="type">Películas Playlist</div>
+        <div class="playlist-activity">1000 likes - 10 items</div>
+      </div>
+    </div>
+    <ion-buttons class="button-container">
+      <ion-button
+        class="ent-buttons secondary-button"
+        (click)="openShareModal()"
+      >
+        <ion-icon
+          class="share"
+          slot="icon-only"
+          name="share-outline"
+        ></ion-icon>
+      </ion-button>
+      <ion-button
+        class="ent-buttons primary-button"
+        (click)="presentAddToPlaylistsToast()"
+      >
+        <ion-icon
+          class="fan-favourite"
+          slot="icon-only"
+          name="heart-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <ion-card class="content" button>
+    <div class="info">
+      <div class="container">
+        <ion-thumbnail
+          class="img-container"
+          tappable
+          routerLink="/playlists/content"
+        >
+          <ion-img
+            src="https://i.pinimg.com/236x/e8/21/35/e8213519a17a208085b2022d0f7edb8f.jpg"
+          ></ion-img>
+        </ion-thumbnail>
+        <div class="description" tappable routerLink="/playlists/content">
+          <div class="title">Hamilton</div>
+          <div class="type">Películas</div>
+          <div class="genre">Musical</div>
+          <div class="year">2015</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal()"
+        >
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-card>
+
+  <ion-card class="location" button>
+    <div class="info">
+      <div class="container">
+        <ion-thumbnail
+          class="img-container"
+          tappable
+          routerLink="/playlists/content"
+        >
+          <ion-img
+            src="https://9to5fortnite.com/wp-content/uploads/2021/09/stardew-valley-festival-four-panel-780x470.jpg"
+          ></ion-img>
+        </ion-thumbnail>
+        <div class="description" tappable routerLink="/playlists/content">
+          <div class="title">Heathers</div>
+          <div class="type">Películas</div>
+          <div class="genre">Musical</div>
+          <div class="year">2016</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal()"
+        >
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-card>
+
+  <ion-card class="content" button>
+    <div class="info">
+      <div class="container">
+        <ion-thumbnail
+          class="img-container"
+          tappable
+          routerLink="/playlists/content"
+        >
+          <ion-img
+            src="https://www.supergoku.com/wp-content/uploads/2020/03/animal-crossing-the-movie-doubutsu-no-mori-185x278.jpg"
+          ></ion-img>
+        </ion-thumbnail>
+        <div class="description" tappable routerLink="/playlists/content">
+          <div class="title">Doubutsu no mori</div>
+          <div class="type">Películas</div>
+          <div class="genre">Animación</div>
+          <div class="year">2006</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal()"
+        >
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-card>
+
+  <ion-card class="content" button>
+    <div class="info">
+      <div class="container">
+        <ion-thumbnail
+          class="img-container"
+          tappable
+          routerLink="/playlists/content"
+        >
+          <ion-img
+            src="https://www.lavanguardia.com/files/image_948_465/uploads/2018/12/24/5fa445a39ab75.jpeg"
+          ></ion-img>
+        </ion-thumbnail>
+        <div class="description" tappable routerLink="/playlists/content">
+          <div class="title">Hilda</div>
+          <div class="type">Series</div>
+          <div class="genre">Drama</div>
+          <div class="year">2018</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal()"
+        >
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-card>
+
+  <ion-card class="content" button>
+    <div class="info">
+      <div class="container">
+        <ion-thumbnail
+          class="img-container"
+          tappable
+          routerLink="/playlists/content"
+        >
+          <ion-img
+            src="https://nosomosnonos.com/wp-content/uploads/2020/10/203-2039044_netflix-rilakkuma-and-kaoru-1536x864.jpg"
+          ></ion-img>
+        </ion-thumbnail>
+        <div class="description" tappable routerLink="/playlists/content">
+          <div class="title">Rilakkuma y Kaoru</div>
+          <div class="type">Series</div>
+          <div class="genre">Animación en volumen</div>
+          <div class="year">2019</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal()"
+        >
+          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-card>
+</ion-content>
