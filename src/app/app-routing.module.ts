@@ -1,16 +1,32 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {
+  canActivate,
+  redirectUnauthorizedTo,
+  redirectLoggedInTo
+} from '@angular/fire/compat/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
+
+const redirectLoggedInToApp = () => redirectLoggedInTo(['/tabs']);
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'welcome',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     loadChildren: () =>
-      import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
+      import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+      // ...canActivate(redirectLoggedInToApp)
   },
   {
     path: 'discover',
     loadChildren: () =>
-      import('./pages/discover/discover.module').then(m => m.DiscoverPageModule)
+      import('./pages/discover/discover.module').then(m => m.DiscoverPageModule),
+      // ...canActivate(redirectUnauthorizedToLogin)
   },
   {
     path: 'rankings',

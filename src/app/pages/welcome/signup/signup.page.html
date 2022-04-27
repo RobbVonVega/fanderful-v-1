@@ -11,29 +11,87 @@
       <div class="logo-container">
         <img class="logotype" src="../../../assets/tab-icons/0-Logotipo.svg" />
       </div>
-      <div class="form-signup">
-        <div class="email">
-          <ion-input type="email" placeholder="email"></ion-input>
+      <form class="form-signup" [formGroup]="credentialForm">
+        <div class="email credentials">
+          <ion-input
+            placeholder="email"
+            formControlName="email"
+            autofocus="true"
+            clearInput="true"
+          ></ion-input>
         </div>
-        <div class="username">
-          <ion-input type="text" placeholder="username"></ion-input>
+        <div
+          *ngIf="(email.dirty || email.touched) && email.errors"
+          class="errors"
+        >
+          <span *ngIf="email.errors?.required">email is required</span>
+          <span *ngIf="email.errors?.email">email is invalid</span>
         </div>
-        <div class="password">
-          <ion-input type="password" placeholder="contraseña"></ion-input>
+
+        <div class="username credentials">
+          <ion-input
+            type="text"
+            placeholder="username"
+            formControlName="username"
+            clearInput="true"
+          ></ion-input>
         </div>
-        <div class="confirm-password">
+        <div
+          *ngIf="(username.dirty || username.touched) && username.errors"
+          class="errors"
+        >
+          <span *ngIf="username.errors?.required">username is required</span>
+          <span *ngIf="username.errors?.minlength">username is invalid</span>
+        </div>
+
+        <div class="password credentials">
+          <ion-input
+            type="password"
+            placeholder="contraseña"
+            formControlName="password"
+            clearInput="true"
+          ></ion-input>
+        </div>
+        <div
+          *ngIf="(password.dirty || password.touched) && password.errors"
+          class="errors"
+        >
+          <span *ngIf="password.errors?.required">password is required</span>
+          <span *ngIf="password.errors?.minlength">password is invalid</span>
+        </div>
+
+        <div class="confirm-password credentials">
           <ion-input
             type="password"
             placeholder="confirmar contraseña"
+            formControlName="confirm_password"
+            clearInput="true"
           ></ion-input>
+        </div>
+        <div
+          *ngIf="(confirm_password.dirty || confirm_password.touched) && confirm_password.errors"
+          class="errors"
+        >
+          <span *ngIf="confirm_password.errors?.required">
+            password is required.
+          </span>
+          <span *ngIf="confirm_password.errors?.confirmedValidator">
+            password and confirm password must be match.
+          </span>
         </div>
         <p>
           al registrarte accedes a ser un miembro ejemplar de nuestra comunidad,
           así como a los Terminos, Política de Datos y Condiciones.
         </p>
-      </div>
+      </form>
       <ion-buttons class="buttons">
-        <ion-button id="signup" (click)="onClick()" routerLink="/welcome/tutorial" shape="round" fill="solid">
+        <ion-button
+          id="signup"
+          (click)="signUp()"
+          
+          shape="round"
+          fill="solid"
+        >
           regístrate
         </ion-button>
       </ion-buttons>

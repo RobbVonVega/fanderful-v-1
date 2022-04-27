@@ -11,17 +11,17 @@
     <div class="info">
       <div class="username">panecito.integral</div>
       <div class="desc-edit">
-        <div class="count">23 playlists</div>
+        <div *ngIf="playlists" class="count">{{playlists.length}} playlists</div>
         <ion-button
           class="edit-button"
-          (click)="onClick()"
+          (click)="signOut()"
           fill="outline"
           shape="round"
           mode="ios"
           size="small"
           color="secondary"
         >
-          editar
+          log out
         </ion-button>
       </div>
     </div>
@@ -45,7 +45,7 @@
     </ion-buttons>
   </div>
 
-  <ion-card class="playlist" button>
+  <ion-card *ngFor="let playlist of playlists" class="playlist" button>
     <div class="info">
       <div class="container">
         <ion-thumbnail
@@ -54,211 +54,13 @@
           routerLink="/playlists/playlist"
         >
           <ion-img
-            src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+            src="{{playlist.pimg}}"
           ></ion-img>
         </ion-thumbnail>
         <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">King george supremacy</div>
-          <div class="type">Anime Playlist</div>
-          <div class="type">panecito.integral</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/05/77/ec/0577ecbdb48f36f704ecffa4e26f8988.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">Yo soy moana...</div>
-          <div class="type">Películas Playlist</div>
-          <div class="type">username</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/cd/36/f8/cd36f896c2306300d32ad86d0e4d1eb7.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">Korean favs</div>
-          <div class="type">Series Playlist</div>
-          <div class="type">username</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/11/ca/b9/11cab976fe21f3274fca31cdb4514687.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">Minecraft Updates</div>
-          <div class="type">Videojuegos Playlist</div>
-          <div class="type">username</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/c1/a2/12/c1a212f5347f4694f7bdb5f4fd836cd2.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">To unalive myself</div>
-          <div class="type">Anime Playlist</div>
-          <div class="type">username</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">Lol es tóxico</div>
-          <div class="type">Videojuegos Playlist</div>
-          <div class="type">username</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/94/78/a3/9478a32b858fc4c1d88d66911e505113.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">Fantacy Photoshoot Places</div>
-          <div class="type">Lugares Playlist</div>
-          <div class="type">username</div>
+          <div class="title">{{playlist.pname}}</div>
+          <div class="type">{{playlist.ptype}} Playlist</div>
+          <div class="type">{{playlist.puser}}</div>
         </div>
       </div>
       <ion-buttons class="button-container">

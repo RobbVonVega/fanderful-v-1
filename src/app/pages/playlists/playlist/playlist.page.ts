@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { Content } from 'src/app/interfaces/interfaces';
+import { DataService } from 'src/app/services/data.service';
 import { AddPlaylistPage } from '../../add-playlist/add-playlist.page';
 import { SharePage } from '../../share/share.page';
 import { CreatePage } from '../create/create.page';
@@ -10,9 +12,12 @@ import { CreatePage } from '../create/create.page';
   styleUrls: ['./playlist.page.scss']
 })
 export class PlaylistPage implements OnInit {
+  contents: Content[] = [];
+
   constructor(
     public modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
+    private routerOutlet: IonRouterOutlet,
+    private dataService: DataService
   ) {}
 
   async openShareModal() {
@@ -45,5 +50,14 @@ export class PlaylistPage implements OnInit {
     return await modal.present();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getContent();
+  }
+
+  getContent() {
+    const path = 'playlists/0gO7eR3pdJzecvPkIqwC/content';
+    this.dataService.getCollectionChanges<Content>(path).subscribe(res => {
+      this.contents = res;
+    });
+  }
 }

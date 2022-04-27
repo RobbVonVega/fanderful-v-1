@@ -5,7 +5,9 @@
     </ion-buttons>
     <div class="user" tappable routerLink="/fan-profile">
       <ion-thumbnail>
-        <img src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg" />
+        <img
+          src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
+        />
       </ion-thumbnail>
       <div class="user-info">
         <div class="username">clingyxbunny</div>
@@ -22,18 +24,28 @@
 
 <ion-content class="chat viewOrganizer">
   <div class="msgSpace">
-    <div>
+    <div class="msgContainer">
       <ul class="msg">
         <li class="date"><span>yesterday</span></li>
 
-        <li class="second">
+        <li
+          *ngFor="let message of messages | async"
+          [ngClass]="{ 'first': message.myMsg, 'second': !message.myMsg}"
+        >
+          <div class="text">{{message.msg}}</div>
+          <time>07:18 AM</time>
+          <!-- <time>{{message.createdAt?.toMillis() | date:'short'}}</time> -->
+        </li>
+
+        <!-- <li class="second">
           <div class="text">Te puedo mostrar musicales para variar :D</div>
           <time>07:18 AM</time>
         </li>
 
         <li class="second">
           <div class="text">
-            Voy a pasarte mis favoritos, debes verlo en ese orden porque son del mejor hasta el mas turro
+            Voy a pasarte mis favoritos, debes verlo en ese orden porque son del
+            mejor hasta el mas turro
           </div>
           <time>07:18 AM</time>
         </li>
@@ -42,7 +54,7 @@
           <div class="text">Musicales?</div>
           <time>07:18 AM</time>
         </li>
-        
+
         <li class="second">
           <div class="text">Sí, sí</div>
           <time>07:18 AM</time>
@@ -110,7 +122,11 @@
         </li>
         <li class="first shared">
           <div>
-            <ion-card class="shared-location" button routerLink="/playlists/location">
+            <ion-card
+              class="shared-location"
+              button
+              routerLink="/playlists/location"
+            >
               <div class="info">
                 <div class="container">
                   <ion-thumbnail class="img-container">
@@ -133,7 +149,11 @@
         </li>
         <li class="first shared">
           <div>
-            <ion-card class="shared-content" button routerLink="/playlists/content">
+            <ion-card
+              class="shared-content"
+              button
+              routerLink="/playlists/content"
+            >
               <div class="info">
                 <div class="container">
                   <ion-thumbnail class="img-container">
@@ -143,7 +163,7 @@
                   </ion-thumbnail>
                   <div class="description">
                     <div class="title">
-                      Filming 
+                      Filming
                     </div>
                     <div class="type">General Playlist</div>
                   </div>
@@ -156,17 +176,50 @@
         <li class="first">
           <div class="text">Para futuros proyectos</div>
           <time>15:31 PM</time>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>
+</ion-content>
 
+<ion-footer>
+  <!-- <ion-toolbar>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea
+          autoGrow="true"
+          class="message-input"
+          rows="1"
+          maxLength="500"
+          [(ngModel)]="newMsg"
+        >
+        </ion-textarea>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar> -->
   <div class="input">
-    <ion-input id="msgInput" placeholder="escribe aquí"></ion-input>
+    <ion-col size="10">
+      <ion-textarea
+        id="msgInput"
+        placeholder="escribe aquí"
+        autoGrow="true"
+        class="message-input"
+        rows="1"
+        maxLength="500"
+        [(ngModel)]="newMsg"
+      >
+      </ion-textarea>
+    </ion-col>
+    <!-- <ion-input id="msgInput" placeholder="escribe aquí"></ion-input> -->
     <ion-buttons>
-      <ion-button fill="clear" class="send primary-button">
+      <ion-button
+        fill="clear"
+        class="send primary-button msg-btn"
+        [disabled]="newMsg === ''"
+        (click)="sendMessage()"
+      >
         <ion-icon slot="icon-only" name="send"></ion-icon>
       </ion-button>
     </ion-buttons>
   </div>
-</ion-content>
+</ion-footer>

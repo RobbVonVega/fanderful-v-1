@@ -58,6 +58,9 @@ $greyChange: #7b808b;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    .msgContainer{
+      height: 100%;
+    }
     & > div {
       display: block;
       width: 100%;
@@ -79,26 +82,13 @@ $greyChange: #7b808b;
         rgba($bkgChat, 0) 100%
       );
     }
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      bottom: 88px;
-      left: 0px;
-      z-index: 1;
-      width: 100%;
-      height: 20px;
-      background: linear-gradient(
-        180deg,
-        rgba($bkgChat, 0) 0%,
-        rgba($bkgChat, 1) 100%
-      );
-    }
+    
   }
   .msg {
     display: block;
     float: left;
     width: 100%;
+    height: 100%;
     //max-height: calc(100% - 110px);
     padding: 0px 20px 20px 20px;
     margin: 0px;
@@ -141,6 +131,7 @@ $greyChange: #7b808b;
         height: auto;
         padding: 10px 20px 10px 20px;
         overflow-wrap: break-word;
+        white-space: pre-wrap;
       }
       time {
         display: block;
@@ -204,41 +195,52 @@ $greyChange: #7b808b;
       }
     }
   }
-  .input {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    z-index: 10;
-    transform: translate(-50%, 0);
-    width: 92%;
-    height: 60px;
-    padding: 6px;
-    border-radius: 10px;
-    background: $secondary;
-    ion-input {
-      --padding-start: 8px;
-      width: 70%;
-      font-weight: 500;
-      color: #ffffff;
-    }
-    ion-buttons {
-      margin-left: 10px;
-      ion-button {
-        display: block;
-        width: 48px;
-        height: 48px;
-        padding: 0px;
-        border-radius: 100px;
-        border: 0px;
-        outline: 0px;
-        background: $primary;
-        ion-icon {
-          height: 24px;
-          width: 24px;
-          padding-left: 2px;
-        }
+}
+
+ion-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+  // position: absolute;
+  // bottom: 15px;
+  // left: 50%;
+  // z-index: 10;
+  // transform: translate(-50%, 0);
+  width: 92%;
+  min-height: 60px;
+  padding: 6px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: $secondary;
+  
+  ion-input {
+    --padding-start: 8px;
+    width: 70%;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  ion-buttons {
+    margin-left: 10px;
+    ion-button {
+      display: block;
+      width: 48px;
+      height: 48px;
+      padding: 0px;
+      border-radius: 100px;
+      border: 0px;
+      outline: 0px;
+      background: $primary;
+      ion-icon {
+        height: 24px;
+        width: 24px;
+        padding-left: 2px;
       }
     }
   }

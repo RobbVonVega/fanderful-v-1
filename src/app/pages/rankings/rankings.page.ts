@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { RankedContent } from 'src/app/interfaces/interfaces';
+import { DataService } from 'src/app/services/data.service';
 import { AddPlaylistPage } from '../add-playlist/add-playlist.page';
 import { SharePage } from '../share/share.page';
 
@@ -9,9 +11,12 @@ import { SharePage } from '../share/share.page';
   styleUrls: ['./rankings.page.scss']
 })
 export class RankingsPage implements OnInit {
+  rankedContents: RankedContent[] = [];
+
   constructor(
     public modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
+    private routerOutlet: IonRouterOutlet,
+    private dataService: DataService
   ) {}
 
   async openShareModal() {
@@ -34,5 +39,14 @@ export class RankingsPage implements OnInit {
     return await modal.present();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getContent();
+  }
+
+  getContent() {
+    const path = 'rankings';
+    this.dataService.getCollectionChanges<RankedContent>(path).subscribe(res => {
+      this.rankedContents = res;
+    });
+  }
 }

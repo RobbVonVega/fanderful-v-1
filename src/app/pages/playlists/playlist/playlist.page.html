@@ -31,7 +31,7 @@
       </div>
       <div class="info-specific">
         <div class="type">Películas Playlist</div>
-        <div class="playlist-activity">1000 likes - 10 items</div>
+        <div *ngIf="contents" class="playlist-activity">1000 likes - {{contents.length}} items</div>
       </div>
     </div>
     <ion-buttons class="button-container">
@@ -58,7 +58,7 @@
     </ion-buttons>
   </div>
 
-  <ion-card class="content" button>
+  <ion-card *ngFor="let content of contents" class="content" button>
     <div class="info">
       <div class="container">
         <ion-thumbnail
@@ -67,174 +67,14 @@
           routerLink="/playlists/content"
         >
           <ion-img
-            src="https://i.pinimg.com/236x/e8/21/35/e8213519a17a208085b2022d0f7edb8f.jpg"
+            src="{{content.contentImg}}"
           ></ion-img>
         </ion-thumbnail>
         <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">Hamilton</div>
-          <div class="type">Películas</div>
-          <div class="genre">Musical</div>
-          <div class="year">2015</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-        <ion-button
-          class="ent-buttons primary-button"
-          (click)="openPlaylistModal()"
-        >
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="location" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/content"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/f8/ca/db/f8cadbe53930d8b5f920f2b2a8defb95.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">Heathers</div>
-          <div class="type">Películas</div>
-          <div class="genre">Musical</div>
-          <div class="year">2010</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-        <ion-button
-          class="ent-buttons primary-button"
-          (click)="openPlaylistModal()"
-        >
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="content" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/content"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/84/78/34/847834846ed5334b0d7d46deada07551.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">Be more Chill</div>
-          <div class="type">Películas</div>
-          <div class="genre">Musical</div>
-          <div class="year">2015</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-        <ion-button
-          class="ent-buttons primary-button"
-          (click)="openPlaylistModal()"
-        >
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="content" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/content"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/20/05/9c/20059c3e527055dee275fb51b6117e74.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">Dear Evan Hansen</div>
-          <div class="type">Peliculas</div>
-          <div class="genre">Musicales</div>
-          <div class="year">2015</div>
-        </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-        <ion-button
-          class="ent-buttons primary-button"
-          (click)="openPlaylistModal()"
-        >
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-card>
-
-  <ion-card class="content" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/content"
-        >
-          <ion-img
-            src="https://i.pinimg.com/236x/27/75/3a/27753a0ff00bc1e7e7750a05466f99fd.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">Six</div>
-          <div class="type">Peliculas</div>
-          <div class="genre">Musicales</div>
-          <div class="year">2017</div>
+          <div class="title">{{content.contentTitle}}</div>
+          <div class="type">{{content.contentType}}</div>
+          <div class="genre">{{content.contentGenre}}</div>
+          <div class="year">{{content.contentYear}}</div>
         </div>
       </div>
       <ion-buttons class="button-container">
