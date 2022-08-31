@@ -11,20 +11,30 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list lines="none" color="primary">
-    <ion-card *ngFor="let chat of chats" button routerLink="/inbox/chat">
-      <ion-item detail>
+    <ion-card
+      class="chat-card"
+      *ngFor="let chat of usersIHaveChatWith"
+      button
+      (click)="pushToNextScreenWithParams('/inbox/chat', {chat})"
+    >
+      <ion-item class="chat-item" detail>
         <ion-avatar slot="start">
           <img
-            src="{{chat.img}}"
+            src="{{chat.participants[0].img?chat.participants[0].img: 'https://i.pinimg.com/564x/b2/b5/bb/b2b5bbc60a653b5d586210175bab6070.jpg'}}"
           />
         </ion-avatar>
 
         <ion-label>
-          <h2 class="text-username">{{chat.username}}</h2>
-          <p>{{chat.lastMsg}}</p>
+          <h2 class="text-username">
+            {{chat.participants[0].username? chat.participants[0].username:
+            chat.participants[0].email }}
+          </h2>
+          <!-- <p>{{chat.participants[0].lastMsg?chat.lastMsg: "Test Message"}}</p> -->
         </ion-label>
 
-        <ion-badge slot="end" color="primary" mode="ios">{{chat.unread}}</ion-badge>
+        <ion-badge slot="end" color="primary" mode="ios"
+          >{{chat.participants[0].unread}}</ion-badge
+        >
       </ion-item>
     </ion-card>
   </ion-list>

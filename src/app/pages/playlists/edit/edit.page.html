@@ -1,0 +1,61 @@
+<ion-content>
+  <div class="create-head">
+    <ion-buttons class="button-container">
+      <ion-button
+        class="modal-buttons transparent-button"
+        fill="clear"
+        (click)="dismiss()"
+        shape="round"
+      >
+        <ion-icon
+          class="share"
+          slot="icon-only"
+          name="chevron-back-outline"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <p class="modal-title">Editar Playlist</p>
+  </div>
+
+  <ion-card class="edit-playlist">
+    <div class="container">
+      <ion-thumbnail class="img-container">
+        <ion-img
+          [src]="pimg != null ? pimg : 'assets/img/not-found.png'"
+        ></ion-img>
+        <ion-label class="upload-label" for="upload">
+          <input
+            type="file"
+            id="file"
+            #userPhoto
+            (change)="onFileSelected($event)"
+            name="image"
+            autocomplete="off"
+          />
+        </ion-label>
+      </ion-thumbnail>
+      <ion-input
+        type="text"
+        placeholder="playlists de fans"
+        #name
+        autofocus
+      ></ion-input>
+      <ion-select placeholder="Todo" interface="popover" #type>
+        <ion-select-option value="Todo">Todo</ion-select-option>
+        <ion-select-option value="Anime">Anime</ion-select-option>
+        <ion-select-option value="Peliculas">Peliculas</ion-select-option>
+        <ion-select-option value="TV">Series de TV</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-card>
+  <ion-button
+    (click)="editPlaylist(name, type)"
+    expand="block"
+    color="primary"
+    class="create-button"
+    [disabled]="isUploading === true"
+  >
+    enviar
+  </ion-button>
+</ion-content>

@@ -25,6 +25,7 @@ export class AuthService {
     return this.currentUser.username;
   }
 
+
   async signUp({ email, username, password }) {
     const credential = await this.afAuth.createUserWithEmailAndPassword(
       email,

@@ -12,17 +12,30 @@ import { ChatService, Message } from 'src/app/services/chat.service';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
-  messages: Observable<Message[]>;
+  chat: any;
+  user: any;
+  messages: Message[];
   newMsg = '';
 
-  constructor(private chatService: ChatService, private router: Router) {}
+  constructor(private chatService: ChatService, private router: Router) {
+
+
+    if (router.getCurrentNavigation().extras.state) {
+      const {chat} = router.getCurrentNavigation().extras.state;
+      this.chat = chat;
+      this.user = chat.participants[0];
+      console.log(this.user);
+    }
+  }
 
   ngOnInit() {
-    this.messages = this.chatService.getChatMessages();
+    this.chatService.getChatMessagesById(this.chat.conversationId).subscribe(msgs => {
+      this.messages = msgs;
+    })
   }
 
   sendMessage() {
-    this.chatService.addChatMessage(this.newMsg).then(() => {
+    this.chatService.addChatMessage(this.newMsg, this.chat.conversationId).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom;
     })

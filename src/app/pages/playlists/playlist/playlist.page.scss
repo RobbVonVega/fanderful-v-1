@@ -7,14 +7,14 @@
 }
 
 .playlist-img-container {
-  height: 300px;
+  height: 330px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   ion-thumbnail {
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     border-radius: 0.5em;
     overflow: hidden;
   }
@@ -54,11 +54,11 @@
         width: 20px;
         border-radius: 20px;
         overflow: hidden;
+        padding-right: 5px;
       }
       .username {
         color: #cecece;
         font-size: 14px;
-        padding-left: 5px;
       }
     }
     .info-specific {

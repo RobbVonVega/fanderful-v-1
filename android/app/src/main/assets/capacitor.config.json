@@ -1,0 +1,6 @@
+{
+	"appId": "com.fanderful.beeboteacup",
+	"appName": "Fanderful",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

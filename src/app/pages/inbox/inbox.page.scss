@@ -4,7 +4,7 @@
 }
 
 //preguntar como cambiar el tamano del boton
-ion-card {
+.chat-card {
   height: 75px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -14,7 +14,7 @@ ion-card {
     height: 40px;
     width: 40px;
   }
-  ion-item {
+  .chat-item {
     --highlight-height: 75px;
     --min-height: 75x;
     ion-label {

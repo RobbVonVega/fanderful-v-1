@@ -18,116 +18,26 @@
     <p class="modal-title">añadir a playlist</p>
   </div>
 
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">King george supremacy</div>
-          <div class="type">Anime Playlist</div>
+  <ion-card
+    class="playlist"
+    button
+    *ngFor="let playlist of playlists"
+    (click)="addContentToThisPlaylist(playlist.pid)"
+  >
+    <ion-item lines="none" color="tertiary" class="fan-item">
+      <div class="info">
+        <div class="container">
+          <ion-thumbnail class="img-container">
+            <ion-img
+              [src]="playlist.pimg != null ? playlist.pimg : 'assets/img/not-found.png'"
+            ></ion-img>
+          </ion-thumbnail>
+          <div class="description">
+            <div class="title">{{playlist.pname}}</div>
+            <div class="type">{{playlist.ptype}} Playlist</div>
+          </div>
         </div>
       </div>
-    </div>
+    </ion-item>
   </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/05/77/ec/0577ecbdb48f36f704ecffa4e26f8988.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">Yo soy moana...</div>
-          <div class="type">Películas Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/cd/36/f8/cd36f896c2306300d32ad86d0e4d1eb7.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">Korean favs</div>
-          <div class="type">Series Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/11/ca/b9/11cab976fe21f3274fca31cdb4514687.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">Minecraft Updates</div>
-          <div class="type">Videojuegos Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/c1/a2/12/c1a212f5347f4694f7bdb5f4fd836cd2.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">To unalive myself</div>
-          <div class="type">Anime Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/fe/00/0c/fe000c8c9f5d289aa306d8df5aea820d.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">Lol es tóxico</div>
-          <div class="type">Videojuegos Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
-  <ion-card class="playlist" button (click)="dismiss()">
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://i.pinimg.com/236x/94/78/a3/9478a32b858fc4c1d88d66911e505113.jpg"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description">
-          <div class="title">Fantasy Photoshoot Places</div>
-          <div class="type">Lugares Playlist</div>
-        </div>
-      </div>
-    </div>
-  </ion-card>
-
 </ion-content>

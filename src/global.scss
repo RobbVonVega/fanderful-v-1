@@ -44,7 +44,15 @@ ion-title {
   font-size: 38px;
 }
 
-ion-card {
+.delete-alert .alert-input-group {
+  display: none;
+}
+
+.fan-item {
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  --min-height: 100px;
   .info {
     width: 93%;
     height: 75%;
@@ -188,7 +196,7 @@ ion-card {
   color: #ffffff;
 }
 
-ion-toast{
+ion-toast {
   --height: 50px;
   --border-radius: 0.5em;
 }

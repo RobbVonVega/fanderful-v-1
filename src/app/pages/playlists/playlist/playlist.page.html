@@ -8,10 +8,10 @@
   <div class="playlist-img-container">
     <ion-thumbnail>
       <img
-        src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+        [src]="playlist.pimg != null ? playlist.pimg : 'assets/img/not-found.png'"
       />
     </ion-thumbnail>
-    <div class="play-name">King Jorge Supremacy</div>
+    <div class="play-name">{{playlist.pname}}</div>
   </div>
 
   <div class="playlist-description">
@@ -22,20 +22,22 @@
         tappable
         routerLink="/fan-profile"
       >
-        <ion-thumbnail>
+        <!-- <ion-thumbnail>
           <img
             src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
           />
-        </ion-thumbnail>
-        <div class="username">clingyxbunny</div>
+        </ion-thumbnail> -->
+        <div class="username">‣ {{playlist.puser}}</div>
       </div>
       <div class="info-specific">
-        <div class="type">Películas Playlist</div>
-        <div *ngIf="contents" class="playlist-activity">1000 likes - {{contents.length}} items</div>
+        <div class="type">{{playlist.ptype}} Playlist</div>
+        <div *ngIf="contents" class="playlist-activity">
+          {{contents.length}} items
+        </div>
       </div>
     </div>
     <ion-buttons class="button-container">
-      <ion-button
+      <!-- <ion-button
         class="ent-buttons secondary-button"
         (click)="openShareModal()"
       >
@@ -44,11 +46,8 @@
           slot="icon-only"
           name="share-outline"
         ></ion-icon>
-      </ion-button>
-      <ion-button
-        class="ent-buttons primary-button"
-        (click)="openCreateModal()"
-      >
+      </ion-button> -->
+      <ion-button class="ent-buttons primary-button" (click)="openEditModal()">
         <ion-icon
           class="create"
           slot="icon-only"
@@ -59,42 +58,49 @@
   </div>
 
   <ion-card *ngFor="let content of contents" class="content" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/content"
-        >
-          <ion-img
-            src="{{content.contentImg}}"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/content">
-          <div class="title">{{content.contentTitle}}</div>
-          <div class="type">{{content.contentType}}</div>
-          <div class="genre">{{content.contentGenre}}</div>
-          <div class="year">{{content.contentYear}}</div>
+    <ion-item-sliding>
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(content)"
+            >
+              <ion-img
+                [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
+              ></ion-img>
+            </ion-thumbnail>
+            <div class="description" tappable (click)="openDetails(content)">
+              <div class="title">{{content.title}}</div>
+              <div class="type">{{content.media_type[0].toUpperCase() +
+                content.media_type.slice(1).toLowerCase()}}</div>
+              <div class="year">{{content.release_date}}</div>
+            </div>
+          </div>
+          <ion-buttons class="button-container">
+            <!-- <ion-button
+              class="ent-buttons secondary-button"
+              (click)="openShareModal()"
+            >
+              <ion-icon
+                class="share"
+                slot="icon-only"
+                name="share-outline"
+              ></ion-icon>
+            </ion-button> -->
+            <ion-button
+              class="ent-buttons primary-button"
+              (click)="openPlaylistModal(content)"
+            >
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-        <ion-button
-          class="ent-buttons primary-button"
-          (click)="openPlaylistModal()"
-        >
-          <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="unread(item)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-card>
 </ion-content>

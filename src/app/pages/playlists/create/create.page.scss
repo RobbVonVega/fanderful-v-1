@@ -46,6 +46,17 @@ ion-content {
       width: 200px;
       border-radius: 0.5em;
       overflow: hidden;
+      .upload-label {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        transform: translate(0, -100%);
+        #file {
+          width: 200px;
+          height: 200px;
+          opacity: 0;
+        }
+      }
     }
     ion-input {
       --padding-start: 0;

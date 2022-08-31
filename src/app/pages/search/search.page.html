@@ -10,10 +10,62 @@
     placeholder="everything you like..."
     inputmode="text"
     animated
+    (ionChange)="onSearchChange( $event )"
+    debounce="250"
   ></ion-searchbar>
 
   <div class="history">
-    <ion-card class="content" button>
+    <ion-card class="content" *ngFor="let content of searchedContent" button>
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(content)"
+            >
+              <ion-img
+                [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
+              ></ion-img>
+            </ion-thumbnail>
+            <div class="description" tappable (click)="openDetails(content)">
+              <div class="title">
+                {{content.title ? content.title : content.name}}
+              </div>
+              <div class="type">
+                {{content.media_type[0].toUpperCase() +
+                content.media_type.slice(1).toLowerCase()}}
+              </div>
+              <!-- <div class="genre">{{movie.producer}}</div> -->
+              <div class="year">
+                {{content.release_date ? content.release_date :
+                content.first_air_date}}
+              </div>
+            </div>
+          </div>
+          <ion-buttons class="button-container">
+            <!-- <ion-button
+              class="ent-buttons secondary-button"
+              (click)="openShareModal()"
+            >
+              <ion-icon
+                class="share"
+                slot="icon-only"
+                name="share-outline"
+              ></ion-icon>
+            </ion-button> -->
+            <ion-button
+              class="ent-buttons primary-button"
+              (click)="openPlaylistModal(content)"
+            >
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-item>
+    </ion-card>
+
+    <!-- <ion-card class="content" button>
       <div class="info">
         <div class="container">
           <ion-thumbnail
@@ -238,6 +290,6 @@
           </ion-button>
         </ion-buttons>
       </div>
-    </ion-card>
+    </ion-card> -->
   </div>
 </ion-content>

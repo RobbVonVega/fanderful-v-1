@@ -15,32 +15,46 @@
       </ion-button>
     </ion-buttons>
 
-    <p class="modal-title">crear/editar playlist</p>
+    <p class="modal-title">Crear playlist</p>
   </div>
 
   <ion-card class="edit-playlist">
     <div class="container">
       <ion-thumbnail class="img-container">
         <ion-img
-          src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
+          [src]="pimg != null ? pimg : 'assets/img/not-found.png'"
         ></ion-img>
+        <ion-label class="upload-label" for="upload">
+          <input
+            type="file"
+            id="file"
+            #userPhoto
+            (change)="onFileSelected($event)"
+            name="image"
+            autocomplete="off"
+          />
+        </ion-label>
       </ion-thumbnail>
-      <ion-input type="text" placeholder="playlists de fans"></ion-input>
-      <ion-select placeholder="Todo" interface="popover">
-        <ion-select-option value="todo">Todo</ion-select-option>
-        <ion-select-option value="anime">Anime</ion-select-option>
-        <ion-select-option value="peliculas">Peliculas</ion-select-option>
+      <ion-input
+        type="text"
+        placeholder="playlists de fans"
+        #name
+        autofocus
+      ></ion-input>
+      <ion-select placeholder="Todo" interface="popover" #type>
+        <ion-select-option value="Todo">Todo</ion-select-option>
+        <ion-select-option value="Anime">Anime</ion-select-option>
+        <ion-select-option value="Peliculas">Peliculas</ion-select-option>
         <ion-select-option value="TV">Series de TV</ion-select-option>
-        <ion-select-option value="VG">Videojuegos</ion-select-option>
-        <ion-select-option value="lugares">Lugares</ion-select-option>
       </ion-select>
     </div>
   </ion-card>
   <ion-button
-    (click)="dismiss()"
+    (click)="createPlaylist(name, type)"
     expand="block"
     color="primary"
     class="create-button"
+    [disabled]="isUploading === true"
   >
     enviar
   </ion-button>

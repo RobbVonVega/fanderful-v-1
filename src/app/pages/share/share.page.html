@@ -19,7 +19,18 @@
   </div>
 
   <ion-list class="recent-friends" lines="none">
-    <ion-item>
+    <ion-item *ngFor="let user of usersIHaveChatWith">
+      <ion-thumbnail class="avatar-container" slot="start">
+        <img
+          src="{{chat.participants[0].img?chat.participants[0].img: 'https://i.pinimg.com/564x/b2/b5/bb/b2b5bbc60a653b5d586210175bab6070.jpg'}}"
+        />
+      </ion-thumbnail>
+      <ion-label>{{chat.participants[0].username? chat.participants[0].username:
+        chat.participants[0].email }}</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+
+    <!-- <ion-item>
       <ion-thumbnail class="avatar-container" slot="start">
         <img
           src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
@@ -137,7 +148,7 @@
       </ion-thumbnail>
       <ion-label>username</ion-label>
       <ion-checkbox slot="end"></ion-checkbox>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
   <ion-button
     (click)="dismiss()"

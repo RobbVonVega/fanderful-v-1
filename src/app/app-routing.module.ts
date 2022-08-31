@@ -11,13 +11,13 @@ const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 const redirectLoggedInToApp = () => redirectLoggedInTo(['/tabs']);
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'welcome',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  },
+  {
+    path: 'app',
     loadChildren: () =>
       import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
       // ...canActivate(redirectLoggedInToApp)
@@ -73,7 +73,8 @@ const routes: Routes = [
     path: 'welcome',
     loadChildren: () =>
       import('./pages/welcome/welcome.module').then(m => m.WelcomePageModule)
-  }
+  },
+
 ];
 @NgModule({
   imports: [

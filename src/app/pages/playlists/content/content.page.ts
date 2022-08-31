@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController } from '@ionic/angular';
+import { TrendingMovies } from 'src/app/interfaces/interfaces';
 import { AddPlaylistPage } from '../../add-playlist/add-playlist.page';
 import { SharePage } from '../../share/share.page';
 
@@ -9,10 +11,19 @@ import { SharePage } from '../../share/share.page';
   styleUrls: ['./content.page.scss']
 })
 export class ContentPage implements OnInit {
+  content: TrendingMovies;
+
   constructor(
     public modalController: ModalController,
-    private routerOutlet: IonRouterOutlet
-  ) {}
+    private routerOutlet: IonRouterOutlet,
+    public router: Router,
+  ) {
+    if (router.getCurrentNavigation().extras.state) {
+      const { data } = router.getCurrentNavigation().extras.state;
+      this.content = data;
+      console.log(this.content);
+    }
+  }
 
   async openShareModal() {
     const modal = await this.modalController.create({
@@ -24,12 +35,15 @@ export class ContentPage implements OnInit {
     return await modal.present();
   }
 
-  async openPlaylistModal() {
+  async openPlaylistModal(content) {
     const modal = await this.modalController.create({
       component: AddPlaylistPage,
       cssClass: 'add-playlist-css',
       swipeToClose: true,
-      presentingElement: this.routerOutlet.nativeEl
+      presentingElement: this.routerOutlet.nativeEl,
+      componentProps: {
+        content: content
+      }
     });
     return await modal.present();
   }

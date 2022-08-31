@@ -3,15 +3,18 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/inbox" text=""></ion-back-button>
     </ion-buttons>
-    <div class="user" tappable routerLink="/fan-profile">
+    <div class="user" tappable>
       <ion-thumbnail>
         <img
-          src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
+          src="{{
+          user.img != null
+            ? user.img
+            : 'assets/img/not-found.png'
+        }}"
         />
       </ion-thumbnail>
       <div class="user-info">
-        <div class="username">clingyxbunny</div>
-        <div class="activity">online</div>
+        <div class="username">{{user.username}}</div>
       </div>
     </div>
     <ion-buttons slot="end">
@@ -29,11 +32,11 @@
         <li class="date"><span>yesterday</span></li>
 
         <li
-          *ngFor="let message of messages | async"
+          *ngFor="let message of messages"
           [ngClass]="{ 'first': message.myMsg, 'second': !message.myMsg}"
         >
           <div class="text">{{message.msg}}</div>
-          <time>07:18 AM</time>
+          <time>{{message.createdAt | date:'shortTime'}}</time>
           <!-- <time>{{message.createdAt?.toMillis() | date:'short'}}</time> -->
         </li>
 

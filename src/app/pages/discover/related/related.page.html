@@ -5,34 +5,36 @@
       defaultHref="/"
       text=""
     ></ion-back-button>
-    <img
-      src="https://i.pinimg.com/originals/40/13/c0/4013c027995164251d92ab7d4f28302c.png"
-    />
+    <img src="{{article.urlToImage}}" />
     <div class="img-fader"></div>
     <div class="news-info">
       <ion-card-title class="news-title"
-        >¿Qué está escrito en la máquina de escribir de AC:NH?</ion-card-title
+        >{{ article ? article.title: 'El titulo de una
+        noticia'}}</ion-card-title
       >
-      <div class="button-container">
-        <ion-card-subtitle>Videojuegos</ion-card-subtitle>
-        <ion-button
-          class="more-info-button"
-          (click)="onClick()"
-          fill="fill"
-          shape="round"
-          mode="ios"
-          size="small"
-          color="secondary"
-        >
-          leer
-        </ion-button>
-      </div>
+      <ion-card-subtitle
+        >{{ article ? article.source.name: 'Categoria'}}</ion-card-subtitle
+      >
     </div>
   </div>
 
-  <h3>Contenido Relacionado</h3>
+  <h3>Resumen de la noticia</h3>
+  <p>{{article.description}}</p>
+  <div class="button-container">
+    <ion-button
+      class="more-info-button"
+      (click)="openArticle()"
+      fill="fill"
+      shape="round"
+      mode="ios"
+      size="small"
+      color="secondary"
+    >
+      ver más
+    </ion-button>
+  </div>
 
-  <ion-card class="content" button>
+  <!-- <ion-card class="content" button>
     <div class="info">
       <div class="container">
         <ion-thumbnail
@@ -230,5 +232,5 @@
         </ion-button>
       </ion-buttons>
     </div>
-  </ion-card>
+  </ion-card> -->
 </ion-content>

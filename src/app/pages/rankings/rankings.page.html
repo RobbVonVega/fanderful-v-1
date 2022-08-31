@@ -6,29 +6,89 @@
       >
     </div>
   </ion-toolbar>
-  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+  <!-- <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
 
-  <ion-segment value="Contenido">
+  <!-- <ion-segment value="Contenido">
     <ion-segment-button value="Contenido">
       <ion-label>contenido</ion-label>
     </ion-segment-button>
     <ion-segment-button value="Playlists">
       <ion-label>playlists</ion-label>
     </ion-segment-button>
-  </ion-segment>
-  <ion-select placeholder="Todo" interface="popover">
-    <ion-select-option value="todo">Todo</ion-select-option>
-    <ion-select-option value="anime">Anime</ion-select-option>
-    <ion-select-option value="peliculas">Peliculas</ion-select-option>
-    <ion-select-option value="TV">Series de TV</ion-select-option>
-    <ion-select-option value="VG">Videojuegos</ion-select-option>
-    <ion-select-option value="lugares">Lugares</ion-select-option>
+  </ion-segment> -->
+  <ion-select
+    placeholder="movies"
+    interface="popover"
+    [value]="seleccion"
+    (ionChange)="cambioCategoria($event)"
+  >
+    <ion-select-option *ngFor="let categoria of categorias" [value]="categoria"
+      >{{categoria[0].toUpperCase() +
+      categoria.slice(1).toLowerCase()}}</ion-select-option
+    >
   </ion-select>
 
   <div class="content-ranking">
-    <ion-card *ngFor="let content of rankedContents; let i = index;" class="content" button>
+    <ion-card
+      *ngFor="let content of trendingMovies; let i = index;"
+      class="content"
+      button
+    >
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(content)"
+            >
+              <ion-img
+                [src]="'https://image.tmdb.org/t/p/w500' + content.poster_path"
+              ></ion-img>
+            </ion-thumbnail>
+            <div class="rank" tappable (click)="openDetails(content)">
+              <div class="rank-number">{{i+1}}</div>
+            </div>
+            <div class="description" tappable (click)="openDetails(content)">
+              <div class="title">
+                {{content.title ? content.title : content.name}}
+              </div>
+              <div class="type">
+                {{content.media_type[0].toUpperCase() +
+                content.media_type.slice(1).toLowerCase()}}
+              </div>
+              <!-- <div class="genre">{{movie.producer}}</div> -->
+              <div class="year">
+                {{content.release_date ? content.release_date.substr(0, 4) :
+                content.first_air_date.substr(0, 4)}}
+              </div>
+            </div>
+          </div>
+          <ion-buttons class="button-container">
+            <!-- <ion-button
+              class="ent-buttons secondary-button"
+              (click)="openShareModal()"
+            >
+              <ion-icon
+                class="share"
+                slot="icon-only"
+                name="share-outline"
+              ></ion-icon>
+            </ion-button> -->
+            <ion-button
+              class="ent-buttons primary-button"
+              (click)="openPlaylistModal(content)"
+            >
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-item>
+    </ion-card>
+
+    <!-- <ion-card *ngFor="let movie of rankedMovies.results|async; let i = index;" class="content" button>
       <div class="info">
         <div class="container">
           <ion-thumbnail
@@ -36,16 +96,15 @@
             tappable
             routerLink="/playlists/content"
           >
-            <ion-img src="{{content.rImg}}"></ion-img>
+            <ion-img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>
           </ion-thumbnail>
           <div class="rank" tappable routerLink="/playlists/content">
             <div class="rank-number">{{i+1}}</div>
           </div>
           <div class="description" tappable routerLink="/playlists/content">
-            <div class="title">{{content.rTitle}}</div>
-            <div class="type">{{content.rType}}</div>
-            <div class="genre">{{content.rGenre}}</div>
-            <div class="year">{{content.rYear}}</div>
+            <div class="title">{{movie.title}}</div>
+            <div class="type">Película</div>
+            <div class="year">{{movie.release_date}}</div>
           </div>
         </div>
         <ion-buttons class="button-container">
@@ -67,6 +126,6 @@
           </ion-button>
         </ion-buttons>
       </div>
-    </ion-card>
+    </ion-card> -->
   </div>
 </ion-content>

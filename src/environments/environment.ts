@@ -12,6 +12,14 @@ export const environment = {
     messagingSenderId: '647666496063',
     appId: '1:647666496063:web:00254ac44a81e2cd747e8a',
     measurementId: 'G-2J729BKVPW'
+  },
+  tmbdMovieConfig: {
+    apiUrl: 'https://api.themoviedb.org/3/discover/movie',
+    apiKey: '32d8b054cd4fbb6126f2fb9c7eda0179'
+  },
+  newsApiConfig: {
+    apiKey: '9e1e8f7482984b989e2be4e516e5292a',
+    apiURL: 'https://newsapi.org/v2/'
   }
 };
 

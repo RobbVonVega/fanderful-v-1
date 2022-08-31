@@ -2,16 +2,22 @@
   <div class="pp-container">
     <ion-thumbnail>
       <img
-        src="https://pbs.twimg.com/media/FMWgdknXsAEMLcr?format=jpg&name=small"
+        src="{{
+          userimg != null
+            ? userimg
+            : 'assets/img/not-found.png'
+        }}"
       />
     </ion-thumbnail>
   </div>
 
   <div class="prf-description">
     <div class="info">
-      <div class="username">panecito.integral</div>
+      <div class="username">{{username}}</div>
       <div class="desc-edit">
-        <div *ngIf="playlists" class="count">{{playlists.length}} playlists</div>
+        <div *ngIf="playlists" class="count">
+          {{playlists.length}} playlists
+        </div>
         <ion-button
           class="edit-button"
           (click)="signOut()"
@@ -26,7 +32,7 @@
       </div>
     </div>
     <ion-buttons class="button-container">
-      <ion-button
+      <!-- <ion-button
         class="ent-buttons secondary-button"
         (click)="openShareModal()"
       >
@@ -35,7 +41,7 @@
           slot="icon-only"
           name="share-outline"
         ></ion-icon>
-      </ion-button>
+      </ion-button> -->
       <ion-button
         class="ent-buttons primary-button"
         (click)="openCreateModal()"
@@ -46,35 +52,43 @@
   </div>
 
   <ion-card *ngFor="let playlist of playlists" class="playlist" button>
-    <div class="info">
-      <div class="container">
-        <ion-thumbnail
-          class="img-container"
-          tappable
-          routerLink="/playlists/playlist"
-        >
-          <ion-img
-            src="{{playlist.pimg}}"
-          ></ion-img>
-        </ion-thumbnail>
-        <div class="description" tappable routerLink="/playlists/playlist">
-          <div class="title">{{playlist.pname}}</div>
-          <div class="type">{{playlist.ptype}} Playlist</div>
-          <div class="type">{{playlist.puser}}</div>
+    <ion-item-sliding>
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(playlist)"
+            >
+              <ion-img
+                [src]="playlist.pimg != null ? playlist.pimg : 'assets/img/not-found.png'"
+              ></ion-img>
+            </ion-thumbnail>
+            <div class="description" tappable (click)="openDetails(playlist)">
+              <div class="title">{{playlist.pname}}</div>
+              <div class="type">{{playlist.ptype}} Playlist</div>
+              <div class="type">· {{playlist.puser}}</div>
+            </div>
+          </div>
+          <ion-buttons class="button-container">
+            <!-- <ion-button
+              class="ent-buttons secondary-button"
+              (click)="openShareModal()"
+            >
+              <ion-icon
+                class="share"
+                slot="icon-only"
+                name="share-outline"
+              ></ion-icon>
+            </ion-button> -->
+          </ion-buttons>
         </div>
-      </div>
-      <ion-buttons class="button-container">
-        <ion-button
-          class="ent-buttons secondary-button"
-          (click)="openShareModal()"
-        >
-          <ion-icon
-            class="share"
-            slot="icon-only"
-            name="share-outline"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="presentDeleteAlert(playlist.pid)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-card>
 </ion-content>

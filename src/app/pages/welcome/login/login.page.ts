@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     this.chatService.signIn(this.credentialForm.value).then(
       (res) => {
         loading.dismiss();
-        this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        this.router.navigateByUrl('/app', { replaceUrl: true });
       },
       async err => {
         loading.dismiss();

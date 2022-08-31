@@ -7,45 +7,52 @@
     </div>
   </ion-toolbar>
 
-  <ion-card class="news-card" button routerLink="/discover/related">
-    <div class="img-container">
-      <img
-        src="https://media.vandal.net/i/1280x720/3-2022/20223818171897_1.jpg.webp"
-      />
+  <ion-card
+    class="news-card"
+    button
+    (click)="goToRelated(noticia)"
+    *ngFor="let noticia of noticias | slice:0:1; let i = index"
+  >
+    <div class="img-container" *ngIf="noticia.urlToImage">
+      <img [src]="noticia.urlToImage" />
     </div>
     <ion-card-header>
-      <ion-card-subtitle>Videojuegos</ion-card-subtitle>
-      <ion-card-title
-        >Ya han conseguido finalizar Elden Ring sin morir ni una vez en sólo
-        2h30</ion-card-title
+      <ion-card-subtitle
+        >{{ i + 1 }}. {{ noticia.source.name }}</ion-card-subtitle
       >
+      <ion-card-title>{{ noticia.title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Un speedrunner ha conseguido pasarse Elden Ring, la nueva obra maestra de
-      FromSoftware, en dos horas y medias sin morir ni una sola vez en toda la
-      partida.
+      {{ noticia.content }}
     </ion-card-content>
   </ion-card>
 
-  <ion-card class="news" button routerLink="/discover/related">
-    <div class="info">
-      <div class="container">
-        <div class="description">
-          <p class="headline">
-            ¿Qué está escrito en la máquina de escribir de AC:NH?
-          </p>
-          <ion-card-subtitle>Videojuegos</ion-card-subtitle>
+  <ion-card
+    class="news"
+    button
+    (click)="goToRelated(noticia)"
+    *ngFor="let noticia of noticias | slice:1:20; let i = index"
+  >
+    <ion-item lines="none" color="tertiary" class="fan-item">
+      <div class="info">
+        <div class="container">
+          <div class="description">
+            <p class="headline">
+              {{ noticia.title }}
+            </p>
+            <ion-card-subtitle
+              >{{ i + 2 }}. {{ noticia.source.name }}</ion-card-subtitle
+            >
+          </div>
+          <ion-thumbnail class="img-container" *ngIf="noticia.urlToImage">
+            <ion-img [src]="noticia.urlToImage"></ion-img>
+          </ion-thumbnail>
         </div>
-        <ion-thumbnail class="img-container">
-          <ion-img
-            src="https://www.nintenderos.com/wp-content/uploads/2022/02/4572s7obuqv41-Cropped.jpg"
-          ></ion-img>
-        </ion-thumbnail>
       </div>
-    </div>
+    </ion-item>
   </ion-card>
 
-  <ion-card class="news" button>
+  <!-- <ion-card class="news" button>
     <div class="info">
       <div class="container">
         <div class="description">
@@ -98,5 +105,5 @@
         </ion-thumbnail>
       </div>
     </div>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
