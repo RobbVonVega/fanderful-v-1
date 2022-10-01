@@ -6,10 +6,13 @@ import {
   ToastController
 } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { TrendingMovies } from 'src/app/interfaces/interfaces';
+import { map } from 'rxjs/operators';
+import { ContentTMDB, Videogame } from 'src/app/interfaces/interfaces';
 import { MoviesService } from 'src/app/services/movies.service';
+import { VideogamesService } from 'src/app/services/videogames.service';
 import { AddPlaylistPage } from '../add-playlist/add-playlist.page';
 import { SharePage } from '../share/share.page';
+
 
 @Component({
   selector: 'app-search',
@@ -17,17 +20,23 @@ import { SharePage } from '../share/share.page';
   styleUrls: ['./search.page.scss']
 })
 export class SearchPage implements OnInit {
-  categorias: string[] = ['multi', 'movie', 'tv'];
+  categorias: string[] = ['Movies & TV', 'Movies', 'TV', 'Videogames'];
+  categoria: string = 'Movies & TV';
   seleccion: string = this.categorias[0];
-  tmdbResult: Observable<any>;
-  searchedContent: TrendingMovies[] = [];
+  searchResult: Observable<any>;
+  searchedTMDB: ContentTMDB[] = [];
+  searchedGames: Videogame[] = [];
   query: string;
+
+  tmbdDisplay: boolean = false;
+  gameDisplay: boolean = false;
 
   constructor(
     public modalController: ModalController,
     private routerOutlet: IonRouterOutlet,
     public toastController: ToastController,
     private moviesService: MoviesService,
+    private vgService: VideogamesService,
     public router: Router
   ) {}
 
@@ -44,14 +53,15 @@ export class SearchPage implements OnInit {
     return await modal.present();
   }
 
-  async openPlaylistModal(content) {
+  async openPlaylistModal(content, state) {
     const modal = await this.modalController.create({
       component: AddPlaylistPage,
       cssClass: 'add-playlist-css',
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: {
-        content: content
+        content: content,
+        state: state
       }
     });
     return await modal.present();
@@ -79,36 +89,86 @@ export class SearchPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  openDetails(content: TrendingMovies) {
-    this.router.navigate(['/playlists/content'], { state: { data: content } });
+  openDetails(content: ContentTMDB, state: string) {
+    this.router.navigate(['/playlists/content'], { state: { data: content, display: state } });
   }
 
   onSearchChange(evento) {
     console.log(evento.detail.value);
     this.query = evento.detail.value;
-    this.loadContents(this.seleccion, this.query);
-    // if(this.query = ''){
-    //   this.searchedContent = [];
-    // } else {
-    //   this.loadContents(this.seleccion, this.query);
-    // }
+    this.loadContentService(this.categoria, this.query);
   }
 
-  loadContents(categoria: string, query: string) {
-    this.tmdbResult = this.moviesService.getSearchContent(categoria, query);
-    this.tmdbResult.subscribe(res => {
-      this.searchedContent = res.results.filter(content => {
-        return content.media_type != 'person';
+  cambioCategoria(event) {
+    this.categoria = event.detail.value;
+    this.loadContentService(this.categoria, this.query);
+  }
+
+  loadContentService(categoria: string, query: string) {
+    if (
+      categoria == 'Movies & TV' ||
+      categoria == 'Movies' ||
+      categoria == 'TV'
+    ) {
+      this.tmbdDisplay = true;
+      this.gameDisplay = false;
+      
+      this.loadTMDBContents(categoria, query);
+    } else if (categoria == 'Videogames') {
+      this.tmbdDisplay = false;
+      this.gameDisplay = true;
+
+      this.loadVGContents(query);
+    }
+  }
+
+  loadTMDBContents(categoria: string, query: string) {
+    if (categoria == 'Movies & TV') {
+      categoria = 'multi';
+    } else if (categoria == 'Movies') {
+      categoria = 'movie';
+    } else if (categoria == 'TV') {
+      categoria = 'tv';
+    }
+    this.searchResult = this.moviesService.getSearchContent(categoria, query);
+    if (categoria == 'multi') {
+      this.searchResult.subscribe(res => {
+        this.searchedTMDB = res.results.filter(content => {
+          return content.media_type != 'person';
+        });
+        console.log(this.searchedTMDB);
       });
-    });
+    } else {
+      this.searchResult.subscribe(res => {
+        if (categoria == 'movie') {
+          this.searchedTMDB = res.results.map(item =>({
+            ... item,
+            media_type: 'movie'
+          }));
+        } else if (categoria == 'tv') {
+          this.searchedTMDB = res.results.map(item =>({
+            ... item,
+            media_type: 'tv'
+          }));
+        }
+      });
+    }
+    
     if (query == '') {
-      this.searchedContent = [];
+      this.searchedTMDB = [];
     }
 
-    // this.searchedContent = this.searchedContent.filter(content => {
-    //   return content.media_type != 'person';
-    // });
   }
 
-  ngOnInit() {}
+  loadVGContents(query) {
+    this.searchResult = this.vgService.getSearchVG(this.query);
+    this.searchResult.subscribe(res => {
+      this.searchedGames = res.results;
+      console.log(this.searchedGames);
+    });
+  }
+
+  ngOnInit() {
+    this.tmbdDisplay = true;
+  }
 }

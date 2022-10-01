@@ -16,7 +16,9 @@ import { PlaylistService } from 'src/app/services/playlist.service';
 export class AddPlaylistPage implements OnInit {
   currentUser: any;
   playlists = [];
+  newContent: PlaylistContent;
   content;
+  state;
 
   constructor(
     public modalController: ModalController,
@@ -50,24 +52,17 @@ export class AddPlaylistPage implements OnInit {
     const contentInPlaylist = playlistInfo.pcontent;
     const playlistName = playlistInfo.pname;
 
-    const newContent: PlaylistContent = {
-      id: this.content.id,
-      title:
-        this.content.title
-          ? this.content.title
-          : this.content.name,
-      poster_path: this.content.poster_path,
-      media_type: this.content.media_type,
-      release_date:
-        this.content.release_date
-          ? this.content.release_date
-          : this.content.first_air_date,
-      overview: this.content.overview
-    };
+    if (this.state == 'tmbd') {
+      this.defineMovie();
+    } else if (this.state == 'Videogame') {
+      this.defineGame();
+    }
 
-    this.playlistService.updatePlaylistById(id, {
-      pcontent: [...contentInPlaylist, newContent]
-    });
+    if (this.newContent != null) {
+      this.playlistService.updatePlaylistById(id, {
+        pcontent: [...contentInPlaylist, this.newContent]
+      });
+    }
 
     this.modalController.dismiss({
       dismissed: true
@@ -76,6 +71,30 @@ export class AddPlaylistPage implements OnInit {
     console.log(playlistName);
 
     this.presentAddToPlaylistsToast(playlistName);
+  }
+
+  defineMovie() {
+    this.newContent = {
+      id: this.content.id,
+      title: this.content.title ? this.content.title : this.content.name,
+      poster_path: this.content.poster_path,
+      media_type: this.content.media_type,
+      release_date: this.content.release_date
+        ? this.content.release_date
+        : this.content.first_air_date,
+      overview: this.content.overview
+    };
+  }
+
+  defineGame() {
+    this.newContent = {
+      id: this.content.id,
+      title: this.content.name,
+      poster_path: this.content.background_image,
+      media_type: 'Videogame',
+      release_date: this.content.released,
+      overview: this.content.short_screenshots
+    };
   }
 
   async presentAddToPlaylistsToast(text) {

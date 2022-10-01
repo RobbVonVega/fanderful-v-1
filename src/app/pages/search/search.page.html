@@ -13,22 +13,36 @@
     (ionChange)="onSearchChange( $event )"
     debounce="250"
   ></ion-searchbar>
+  <ion-select
+    placeholder="movies"
+    interface="popover"
+    [value]="seleccion"
+    (ionChange)="cambioCategoria($event)"
+  >
+    <ion-select-option *ngFor="let type of categorias" [value]="type"
+      >{{type[0].toUpperCase() + type.slice(1)}}</ion-select-option
+    >
+  </ion-select>
 
-  <div class="history">
-    <ion-card class="content" *ngFor="let content of searchedContent" button>
+  <div class="history" *ngIf="tmbdDisplay">
+    <ion-card class="content" *ngFor="let content of searchedTMDB" button>
       <ion-item lines="none" color="tertiary" class="fan-item">
         <div class="info">
           <div class="container">
             <ion-thumbnail
               class="img-container"
               tappable
-              (click)="openDetails(content)"
+              (click)="openDetails(content, 'tmbd')"
             >
               <ion-img
                 [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
               ></ion-img>
             </ion-thumbnail>
-            <div class="description" tappable (click)="openDetails(content)">
+            <div
+              class="description"
+              tappable
+              (click)="openDetails(content, 'tmbd')"
+            >
               <div class="title">
                 {{content.title ? content.title : content.name}}
               </div>
@@ -40,6 +54,52 @@
               <div class="year">
                 {{content.release_date ? content.release_date :
                 content.first_air_date}}
+              </div>
+            </div>
+          </div>
+          <ion-buttons class="button-container">
+            <ion-button
+              class="ent-buttons primary-button"
+              (click)="openPlaylistModal(content, 'tmbd')"
+            >
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div class="content-ranking" *ngIf="gameDisplay">
+    <ion-card
+      *ngFor="let content of searchedGames; let i = index;"
+      class="content"
+      button
+    >
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(content, 'Videogame')"
+            >
+              <ion-img [src]="content.background_image"></ion-img>
+            </ion-thumbnail>
+            <div
+              class="description"
+              tappable
+              (click)="openDetails(content, 'Videogame')"
+            >
+              <div class="title">
+                {{content.name}}
+              </div>
+              <div class="type">
+                Videogame
+              </div>
+              <!-- <div class="genre">{{movie.producer}}</div> -->
+              <div class="year">
+                {{content.released.substr(0, 4)}}
               </div>
             </div>
           </div>
@@ -56,7 +116,7 @@
             </ion-button> -->
             <ion-button
               class="ent-buttons primary-button"
-              (click)="openPlaylistModal(content)"
+              (click)="openPlaylistModal(content, 'Videogame')"
             >
               <ion-icon slot="icon-only" name="add-outline"></ion-icon>
             </ion-button>
@@ -64,232 +124,5 @@
         </div>
       </ion-item>
     </ion-card>
-
-    <!-- <ion-card class="content" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/playlists/content"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/78/c8/51/78c85189d5109635bb1acd783f841ead.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/playlists/content">
-            <div class="title">Avengers Endgame 2nd part</div>
-            <div class="type">Películas</div>
-            <div class="genre">Acción</div>
-            <div class="year">2019</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-          <ion-button
-            class="ent-buttons primary-button"
-            (click)="openPlaylistModal()"
-          >
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card>
-
-    <ion-card class="playlist" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/playlists/playlist"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/de/ec/2c/deec2cf78b786e8e9dfbe17877d61e71.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/playlists/playlist">
-            <div class="title">King george supremacy</div>
-            <div class="type">Anime Playlist</div>
-            <div class="type">Username</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-          <ion-button
-            class="ent-buttons primary-button"
-            (click)="presentAddToPlaylistsToast()"
-          >
-            <ion-icon
-              class="fan-favourite"
-              slot="icon-only"
-              name="heart-outline"
-            ></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card>
-
-    <ion-card class="content" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/playlists/content"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/f7/64/4d/f7644d854aa5994a2dfefd5b0f9c8742.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/playlists/content">
-            <div class="title">Chambers</div>
-            <div class="type">Series</div>
-            <div class="genre">Suspenso</div>
-            <div class="year">2019</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-          <ion-button
-            class="ent-buttons primary-button"
-            (click)="openPlaylistModal()"
-          >
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card>
-
-    <ion-card class="profile" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/fan-profile"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/d8/f5/48/d8f548c51415f1c011d6b8019bd36c0a.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/fan-profile">
-            <div class="title">_peachxbaby</div>
-            <div class="type">Fan Profile</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card>
-
-    <ion-card class="content" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/playlists/content"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/8c/35/5c/8c355cdbc59e5ee2045b5ed40f4c791f.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/playlists/content">
-            <div class="title">Encanto</div>
-            <div class="type">Películas</div>
-            <div class="genre">Musical</div>
-            <div class="year">2021</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-          <ion-button
-            class="ent-buttons primary-button"
-            (click)="openPlaylistModal()"
-          >
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card>
-
-    <ion-card class="profile" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/fan-profile"
-          >
-            <ion-img
-              src="https://i.pinimg.com/236x/7c/88/a0/7c88a07045fe75902096b6819ec5f62f.jpg"
-            ></ion-img>
-          </ion-thumbnail>
-          <div class="description" tappable routerLink="/fan-profile">
-            <div class="title">clingyxbunny</div>
-            <div class="type">Fan Profile</div>
-          </div>
-        </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card> -->
   </div>
 </ion-content>

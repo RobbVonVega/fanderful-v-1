@@ -5,49 +5,143 @@
     text=""
   ></ion-back-button>
 
-  <div class="content-img-container">
-    <ion-thumbnail>
-      <ion-img
-        [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
-      ></ion-img>
-    </ion-thumbnail>
-    <div class="content-name">
-      {{content.title ? content.title : content.name}}
-    </div>
-    <div class="content-info">
-      {{content.media_type[0].toUpperCase() +
-      content.media_type.slice(1).toLowerCase()}} | {{content.release_date ?
-      content.release_date : 'First Episode: ' + content.first_air_date}}
-    </div>
-  </div>
-
-  <div class="contenido-relacionado">
-    <div class="container">
-      <div class="description">
-        <div class="title">Sinopsis</div>
+  <div *ngIf="state == 'tmbd' || state == 'pContentTMBD'">
+    <div class="content-img-container">
+      <ion-thumbnail>
+        <ion-img
+          [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
+        ></ion-img>
+      </ion-thumbnail>
+      <div class="content-name">
+        {{content.title ? content.title : content.name}}
+      </div>
+      <div class="content-info">
+        {{content.media_type[0].toUpperCase() +
+        content.media_type.slice(1).toLowerCase()}} | {{content.release_date ?
+        content.release_date : 'First Episode: ' + content.first_air_date}}
       </div>
     </div>
-    <ion-buttons class="button-container">
-      <ion-button
-        class="ent-buttons secondary-button"
-        (click)="openShareModal()"
-      >
-        <ion-icon
-          class="share"
-          slot="icon-only"
-          name="share-outline"
-        ></ion-icon>
-      </ion-button>
-      <ion-button
-        class="ent-buttons primary-button"
-        (click)="openPlaylistModal(content)"
+
+    <div class="contenido-relacionado">
+      <div class="container">
+        <div class="description">
+          <div class="title">Sinopsis</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
         >
-        <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal(content)"
+        >
+          <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <div class="sinopsis">
+      <p>{{content.overview}}</p>
+    </div>
   </div>
 
-  <div class="sinopsis">
-    <p>{{content.overview}}</p>
+  <div *ngIf="state == 'Videogame'">
+    <div class="content-img-container">
+      <ion-thumbnail>
+        <ion-img [src]="content.background_image"></ion-img>
+      </ion-thumbnail>
+      <div class="content-name">
+        {{content.name}}
+      </div>
+      <div class="content-info">
+        Videogame | {{content.released}}
+      </div>
+    </div>
+
+    <div class="contenido-relacionado">
+      <div class="container">
+        <div class="description">
+          <div class="title">Metacritic Score: {{content.metacritic}}</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal(content)"
+        >
+          <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <!-- <div class="sinopsis"">
+      <p>{{content.overview}}</p>
+    </div> -->
+  </div>
+
+  <div *ngIf="state == 'pContentVideogame'">
+    <div class="content-img-container">
+      <ion-thumbnail>
+        <ion-img
+          [src]="content.poster_path != null ? content.poster_path : 'assets/img/not-found.png'"
+        ></ion-img>
+      </ion-thumbnail>
+      <div class="content-name">
+        {{content.title ? content.title : content.name}}
+      </div>
+      <div class="content-info">
+        {{content.media_type[0].toUpperCase() +
+        content.media_type.slice(1).toLowerCase()}} | {{content.release_date ?
+        content.release_date : 'First Episode: ' + content.first_air_date}}
+      </div>
+    </div>
+
+    <div class="contenido-relacionado">
+      <div class="container">
+        <div class="description">
+          <div class="title">Screenshots</div>
+        </div>
+      </div>
+      <ion-buttons class="button-container">
+        <ion-button
+          class="ent-buttons secondary-button"
+          (click)="openShareModal()"
+        >
+          <ion-icon
+            class="share"
+            slot="icon-only"
+            name="share-outline"
+          ></ion-icon>
+        </ion-button>
+        <ion-button
+          class="ent-buttons primary-button"
+          (click)="openPlaylistModal(content)"
+        >
+          <ion-icon class="add" slot="icon-only" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+    <!-- <div *ngFor="let image of content.overview.image">
+      <ion-img [src]="image"></ion-img>
+    </div> -->
   </div>
 </ion-content>

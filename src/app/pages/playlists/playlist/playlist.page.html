@@ -65,13 +65,16 @@
             <ion-thumbnail
               class="img-container"
               tappable
-              (click)="openDetails(content)"
+              (click)="openDetails(content, content.media_type)"
             >
-              <ion-img
+              <ion-img *ngIf="content.media_type == 'Videogame'"
+                [src]="content.poster_path != null ? content.poster_path : 'assets/img/not-found.png'"
+              ></ion-img>
+              <ion-img *ngIf="content.media_type == 'movie' || content.media_type == 'tv'"
                 [src]="content.poster_path != null ? 'https://image.tmdb.org/t/p/w500' + content.poster_path : 'assets/img/not-found.png'"
               ></ion-img>
             </ion-thumbnail>
-            <div class="description" tappable (click)="openDetails(content)">
+            <div class="description" tappable (click)="openDetails(content, 'pContent' + content.media_type)">
               <div class="title">{{content.title}}</div>
               <div class="type">{{content.media_type[0].toUpperCase() +
                 content.media_type.slice(1).toLowerCase()}}</div>

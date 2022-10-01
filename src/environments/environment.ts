@@ -20,7 +20,11 @@ export const environment = {
   newsApiConfig: {
     apiKey: '9e1e8f7482984b989e2be4e516e5292a',
     apiURL: 'https://newsapi.org/v2/'
-  }
+  },
+  videogamesAPIConfig: {
+    apiURL: 'https://api.rawg.io/api/games?',
+    apiKey: 'ebd97506bfc34a28a0458b5258dd1ff8',
+  },
 };
 
 /*

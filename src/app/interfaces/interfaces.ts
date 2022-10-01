@@ -40,12 +40,12 @@ export interface RankedContent {
 
 interface TMDBResult {
   page: number;
-  results: TrendingMovies[];
+  results: ContentTMDB[];
   total_pages: number;
   total_results: number;
 }
 
-export interface TrendingMovies {
+export interface ContentTMDB {
   backdrop_path?: string;
   first_air_date?: string;
   genre_ids?: number[];
@@ -92,7 +92,7 @@ interface Knownfor {
   video?: boolean;
 }
 
-export interface FansChats{
+export interface FansChats {
   chatId: string;
   img: string;
   username: string;
@@ -140,4 +140,89 @@ export interface Article {
 export interface Source {
   id?: string;
   name: string;
+}
+
+ interface rawgResult {
+  count: number;
+  next: string;
+  previous?: any;
+  results: Videogame[];
+  user_platforms: boolean;
+}
+
+export interface Videogame {
+  slug: string;
+  name: string;
+  playtime: number;
+  platforms: Platform2[];
+  stores: Store[];
+  released: string;
+  tba: boolean;
+  background_image: string;
+  rating: number;
+  rating_top: number;
+  ratings: Rating[];
+  ratings_count: number;
+  reviews_text_count: number;
+  added: number;
+  added_by_status: Addedbystatus;
+  metacritic: number;
+  suggestions_count: number;
+  updated: string;
+  id: number;
+  score?: any;
+  clip?: any;
+  tags: Tag[];
+  esrb_rating?: any;
+  user_game?: any;
+  reviews_count: number;
+  saturated_color: string;
+  dominant_color: string;
+  short_screenshots: Shortscreenshot[];
+  parent_platforms: Platform2[];
+  genres: Platform[];
+}
+
+interface Shortscreenshot {
+  id: number;
+  image: string;
+}
+
+interface Tag {
+  id: number;
+  name: string;
+  slug: string;
+  language: string;
+  games_count: number;
+  image_background: string;
+}
+
+interface Addedbystatus {
+  yet?: number;
+  owned?: number;
+  beaten?: number;
+  toplay?: number;
+  dropped?: number;
+  playing?: number;
+}
+
+interface Rating {
+  id: number;
+  title: string;
+  count: number;
+  percent: number;
+}
+
+interface Store {
+  store: Platform;
+}
+
+interface Platform2 {
+  platform: Platform;
+}
+
+interface Platform {
+  id: number;
+  name: string;
+  slug: string;
 }

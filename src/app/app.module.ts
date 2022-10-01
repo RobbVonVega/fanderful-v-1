@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, FileSizePipe],
@@ -32,6 +33,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
     AngularFireStorageModule,
   ],
   providers: [
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     InAppBrowser // declaración del plugin InAppBrowser
   ],

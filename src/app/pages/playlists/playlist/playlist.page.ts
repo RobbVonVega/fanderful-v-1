@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonRouterOutlet, ModalController, ToastController } from '@ionic/angular';
-import { PlaylistContent, Playlist, TrendingMovies } from 'src/app/interfaces/interfaces';
+import { PlaylistContent, Playlist, ContentTMDB } from 'src/app/interfaces/interfaces';
 import { DataService } from 'src/app/services/data.service';
 import { AddPlaylistPage } from '../../add-playlist/add-playlist.page';
 import { SharePage } from '../../share/share.page';
@@ -26,6 +26,7 @@ export class PlaylistPage implements OnInit {
   ) {
     if (router.getCurrentNavigation().extras.state) {
       const { data } = router.getCurrentNavigation().extras.state;
+      
       this.playlist = data;
       console.log(this.playlist);
 
@@ -45,14 +46,15 @@ export class PlaylistPage implements OnInit {
     return await modal.present();
   }
 
-  async openPlaylistModal(content) {
+  async openPlaylistModal(content, state) {
     const modal = await this.modalController.create({
       component: AddPlaylistPage,
       cssClass: 'add-playlist-css',
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: {
-        content: content
+        content: content,
+        state: state
       }
     });
     return await modal.present();
@@ -104,8 +106,8 @@ export class PlaylistPage implements OnInit {
     return await modal.present();
   }
 
-  openDetails(content: TrendingMovies) {
-    this.router.navigate(['/playlists/content'], { state: { data: content } });
+  openDetails(content: ContentTMDB, state: string) {
+    this.router.navigate(['/playlists/content'], { state: { data: content, display: state } });
   }
 
   ngOnInit() {

@@ -25,14 +25,13 @@
     (ionChange)="cambioCategoria($event)"
   >
     <ion-select-option *ngFor="let categoria of categorias" [value]="categoria"
-      >{{categoria[0].toUpperCase() +
-      categoria.slice(1).toLowerCase()}}</ion-select-option
+      >{{categoria[0].toUpperCase() + categoria.slice(1)}}</ion-select-option
     >
   </ion-select>
 
-  <div class="content-ranking">
+  <div class="content-ranking" *ngIf="tmbdDisplay">
     <ion-card
-      *ngFor="let content of trendingMovies; let i = index;"
+      *ngFor="let content of trendingTMDB; let i = index;"
       class="content"
       button
     >
@@ -42,16 +41,16 @@
             <ion-thumbnail
               class="img-container"
               tappable
-              (click)="openDetails(content)"
+              (click)="openDetails(content, 'tmbd')"
             >
               <ion-img
                 [src]="'https://image.tmdb.org/t/p/w500' + content.poster_path"
               ></ion-img>
             </ion-thumbnail>
-            <div class="rank" tappable (click)="openDetails(content)">
+            <div class="rank" tappable (click)="openDetails(content, 'tmbd')">
               <div class="rank-number">{{i+1}}</div>
             </div>
-            <div class="description" tappable (click)="openDetails(content)">
+            <div class="description" tappable (click)="openDetails(content, 'tmbd')">
               <div class="title">
                 {{content.title ? content.title : content.name}}
               </div>
@@ -79,7 +78,7 @@
             </ion-button> -->
             <ion-button
               class="ent-buttons primary-button"
-              (click)="openPlaylistModal(content)"
+              (click)="openPlaylistModal(content, 'tmbd')"
             >
               <ion-icon slot="icon-only" name="add-outline"></ion-icon>
             </ion-button>
@@ -87,45 +86,62 @@
         </div>
       </ion-item>
     </ion-card>
+  </div>
 
-    <!-- <ion-card *ngFor="let movie of rankedMovies.results|async; let i = index;" class="content" button>
-      <div class="info">
-        <div class="container">
-          <ion-thumbnail
-            class="img-container"
-            tappable
-            routerLink="/playlists/content"
-          >
-            <ion-img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"></ion-img>
-          </ion-thumbnail>
-          <div class="rank" tappable routerLink="/playlists/content">
-            <div class="rank-number">{{i+1}}</div>
+  <div class="content-ranking" *ngIf="gameDisplay">
+    <ion-card
+      *ngFor="let content of trendingGames; let i = index;"
+      class="content"
+      button
+    >
+      <ion-item lines="none" color="tertiary" class="fan-item">
+        <div class="info">
+          <div class="container">
+            <ion-thumbnail
+              class="img-container"
+              tappable
+              (click)="openDetails(content, 'Videogame')"
+            >
+              <ion-img
+                [src]="content.background_image"
+              ></ion-img>
+            </ion-thumbnail>
+            <div class="rank" tappable (click)="openDetails(content, 'Videogame')">
+              <div class="rank-number">{{i+1}}</div>
+            </div>
+            <div class="description" tappable (click)="openDetails(content, 'Videogame')">
+              <div class="title">
+                {{content.name}}
+              </div>
+              <div class="type">
+                Videogame
+              </div>
+              <!-- <div class="genre">{{movie.producer}}</div> -->
+              <div class="year">
+                {{content.released.substr(0, 4)}}
+              </div>
+            </div>
           </div>
-          <div class="description" tappable routerLink="/playlists/content">
-            <div class="title">{{movie.title}}</div>
-            <div class="type">Película</div>
-            <div class="year">{{movie.release_date}}</div>
-          </div>
+          <ion-buttons class="button-container">
+            <!-- <ion-button
+              class="ent-buttons secondary-button"
+              (click)="openShareModal()"
+            >
+              <ion-icon
+                class="share"
+                slot="icon-only"
+                name="share-outline"
+              ></ion-icon>
+            </ion-button> -->
+            <ion-button
+              class="ent-buttons primary-button"
+              (click)="openPlaylistModal(content, 'Videogame')"
+            >
+              <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </div>
-        <ion-buttons class="button-container">
-          <ion-button
-            class="ent-buttons secondary-button"
-            (click)="openShareModal()"
-          >
-            <ion-icon
-              class="share"
-              slot="icon-only"
-              name="share-outline"
-            ></ion-icon>
-          </ion-button>
-          <ion-button
-            class="ent-buttons primary-button"
-            (click)="openPlaylistModal()"
-          >
-            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-card> -->
+      </ion-item>
+    </ion-card>
   </div>
 </ion-content>
