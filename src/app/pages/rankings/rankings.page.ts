@@ -29,11 +29,14 @@ export class RankingsPage implements OnInit {
   seleccion: string = this.categorias[0];
   rankedContents: RankedContent[] = [];
   trendResult: Observable<any>;
+  idLookupResult: Observable<any>;
   trendingTMDB: ContentTMDB[] = [];
   trendingGames: Videogame[] = [];
 
   tmbdDisplay: boolean = false;
   gameDisplay: boolean = false;
+
+  gameDescription: string;
 
   constructor(
     public modalController: ModalController,
@@ -52,7 +55,9 @@ export class RankingsPage implements OnInit {
   }
 
   openDetails(content: ContentTMDB, state: string) {
-    this.router.navigate(['/playlists/content'], { state: { data: content, display: state } });
+    this.router.navigate(['/playlists/content'], {
+      state: { data: content, display: state }
+    });
   }
 
   cambioCategoria(event) {
@@ -67,7 +72,7 @@ export class RankingsPage implements OnInit {
     ) {
       this.tmbdDisplay = true;
       this.gameDisplay = false;
-      
+
       this.loadTMDBContents(categoria);
     } else if (categoria == 'Videogames') {
       this.tmbdDisplay = false;
@@ -97,9 +102,38 @@ export class RankingsPage implements OnInit {
   loadVG() {
     this.trendResult = this.vgService.getTrendingVG();
     this.trendResult.subscribe(res => {
-      this.trendingGames = res.results;
+      this.trendingGames = res.results.map(item => ({
+        ...item,
+        game_description: this.loadVGdetails(item.id)
+      }));
+      // this.trendingGames = res.results.map(item => {
+      //   const container = {} as Videogame;
+      //   const id = item.id;
+
+      //   this.loadVGdetails(id);
+      //   container.description = this.gameDescription;
+      //   console.log(this.gameDescription);
+
+      //   return container;
+      // });
       console.log(this.trendingGames);
+      // this.loadVGdetails(this.trendingGames[0].id);
+      // this.trendingGames = res.results.map(item => ({
+      //   ...item,
+      //   game_description: this.gameDescription
+      // }));
+      // console.log(this.trendingGames);
     });
+    // this.trendingGames = this.trendingGames.map(item => ({}));
+  }
+
+  async loadVGdetails(id: number) {
+    this.idLookupResult = this.vgService.getGameDetails(id);
+    this.idLookupResult.subscribe(res => {
+      this.gameDescription = res.description_raw;
+      console.log(res.slug);
+    });
+    await this.gameDescription;
   }
 
   async openShareModal() {

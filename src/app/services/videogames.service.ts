@@ -46,4 +46,10 @@ export class VideogamesService {
         query
     );
   }
+
+  getGameDetails(id) {
+    return this.http.get(
+      'https://api.rawg.io/api/games/' + id + '?key=' + apiKey
+    );
+  }
 }
