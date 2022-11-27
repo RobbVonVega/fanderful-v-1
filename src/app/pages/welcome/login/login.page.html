@@ -8,52 +8,51 @@
   <div class="all-container">
     <div id="background"></div>
     <div class="container">
-      <div class="logo-container">
-        <img class="logotype" src="../../../assets/tab-icons/0-Logotipo.svg" />
+      <div class="top-container">
+        <div class="logo-container">
+          <img
+            class="logotype"
+            src="../../../assets/tab-icons/0-Logotipo.svg"
+          />
+        </div>
+        <form class="form-login" [formGroup]="credentialForm">
+          <div class="email credentials">
+            <ion-input
+              placeholder="email"
+              formControlName="email"
+              autofocus="true"
+              clearInput="true"
+            ></ion-input>
+          </div>
+          <div
+            *ngIf="(email.dirty || email.touched) && email.errors"
+            class="errors"
+          >
+            <span *ngIf="email.errors?.required">email is required</span>
+            <span *ngIf="email.errors?.email">email is invalid</span>
+          </div>
+
+          <div class="password credentials">
+            <ion-input
+              type="password"
+              placeholder="contraseña"
+              formControlName="password"
+              clearInput="true"
+            ></ion-input>
+          </div>
+          <div
+            *ngIf="(password.dirty || password.touched) && password.errors"
+            class="errors"
+          >
+            <span *ngIf="password.errors?.required">password is required</span>
+            <span *ngIf="password.errors?.minlength">password is invalid</span>
+          </div>
+
+          <p>¿Olvidaste tu <b>contraseña?</b></p>
+        </form>
       </div>
-      <form class="form-login" [formGroup]="credentialForm">
-        <div class="email credentials">
-          <ion-input
-            placeholder="email"
-            formControlName="email"
-            autofocus="true"
-            clearInput="true"
-          ></ion-input>
-        </div>
-        <div
-          *ngIf="(email.dirty || email.touched) && email.errors"
-          class="errors"
-        >
-          <span *ngIf="email.errors?.required">email is required</span>
-          <span *ngIf="email.errors?.email">email is invalid</span>
-        </div>
-
-        <div class="password credentials">
-          <ion-input
-            type="password"
-            placeholder="contraseña"
-            formControlName="password"
-            clearInput="true"
-          ></ion-input>
-        </div>
-        <div
-          *ngIf="(password.dirty || password.touched) && password.errors"
-          class="errors"
-        >
-          <span *ngIf="password.errors?.required">password is required</span>
-          <span *ngIf="password.errors?.minlength">password is invalid</span>
-        </div>
-
-        <p>¿Olvidaste tu <b>contraseña?</b></p>
-
-      </form>
       <ion-buttons class="buttons">
-        <ion-button
-          id="signin"
-          (click)="signIn()"
-          shape="round"
-          fill="solid"
-        >
+        <ion-button id="signin" (click)="signIn()" shape="round" fill="solid">
           ingresar
         </ion-button>
       </ion-buttons>
