@@ -8,6 +8,22 @@
             : 'assets/img/not-found.png'
         }}"
       />
+      <ion-label class="upload-label" for="upload">
+        <input
+          type="file"
+          id="file"
+          #userPhoto
+          (change)="onFileSelected($event)"
+          name="image"
+          autocomplete="off"
+        />
+      </ion-label>
+      <div id="animation">
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </ion-thumbnail>
   </div>
 
@@ -87,7 +103,9 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="presentDeleteAlert(playlist.pid)">Delete</ion-item-option>
+        <ion-item-option (click)="presentDeleteAlert(playlist.pid)"
+          >Delete</ion-item-option
+        >
       </ion-item-options>
     </ion-item-sliding>
   </ion-card>

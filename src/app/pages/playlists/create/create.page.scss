@@ -57,6 +57,16 @@ ion-content {
           opacity: 0;
         }
       }
+      #loader-overlay {
+        display: none;
+        position: relative;
+        width: 200px;
+        height: 200px;
+        transform: translate(0, -100%);
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($color: #2a2e32, $alpha: 0.4);
+      }
     }
     ion-input {
       --padding-start: 0;

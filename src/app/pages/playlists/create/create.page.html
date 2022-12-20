@@ -34,18 +34,26 @@
             autocomplete="off"
           />
         </ion-label>
+        <div id="loader-overlay">
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       </ion-thumbnail>
       <ion-input
         type="text"
-        placeholder="playlists de fans"
+        placeholder="Nombre de tu playlist"
+        (input)="checkNameEnable($event)"
         #name
         autofocus
       ></ion-input>
-      <ion-select placeholder="Todo" interface="popover" #type>
-        <ion-select-option value="Todo">Todo</ion-select-option>
+      <ion-select value="General" interface="popover" #type>
+        <ion-select-option value="General">Todo</ion-select-option>
         <ion-select-option value="Anime">Anime</ion-select-option>
-        <ion-select-option value="Peliculas">Peliculas</ion-select-option>
+        <ion-select-option value="Peliculas">Películas</ion-select-option>
         <ion-select-option value="TV">Series de TV</ion-select-option>
+        <ion-select-option value="Videojuegos">Videojuegos</ion-select-option>
       </ion-select>
     </div>
   </ion-card>
@@ -54,7 +62,7 @@
     expand="block"
     color="primary"
     class="create-button"
-    [disabled]="isUploading === true"
+    [disabled]="isDisabled === true"
   >
     ¡crear!
   </ion-button>

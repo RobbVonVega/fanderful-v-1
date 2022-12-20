@@ -20,6 +20,9 @@ export class CreatePage implements OnInit {
   downloadURL: Observable<string>;
 
   isUploading: boolean = false;
+  isUploaded: boolean = false;
+  nameExists: boolean = false;
+  isDisabled: boolean = true;
 
   constructor(
     public modalController: ModalController,
@@ -41,8 +44,37 @@ export class CreatePage implements OnInit {
     });
   }
 
+  checkNameEnable(event) {
+    if (event.target.value == undefined || event.target.value == '') {
+      this.nameExists = false;
+      this.disableButton();
+    } else {
+      this.nameExists = true;
+      if(this.isUploaded){
+        this.enableButton();
+      }
+    }
+    console.log(this.isDisabled);
+  }
+
+  enableButton(){
+    this.isDisabled = false;
+  }
+
+  disableButton(){
+    this.isDisabled = true;
+  }
+
   createPlaylist(name, type) {
     console.log('currentUser', this.currentUser);
+
+    if (this.pimg == undefined) {
+      this.pimg = 'assets/img/not-found.png';
+    }
+
+    if (type == undefined || type == '' || type == 'Todo') {
+      type = 'General';
+    }
 
     const newPlaylist = {
       pimg: this.pimg,
@@ -70,6 +102,11 @@ export class CreatePage implements OnInit {
 
   onFileSelected(event) {
     this.isUploading = true;
+    const aniDiv = document.getElementById('loader-overlay');
+    if (this.isUploading) {
+      aniDiv.style.display = 'flex';
+    }
+
     var n = Date.now();
     const file = event.target.files[0];
     const filePath = `PlaylistsImages/${n}`;
@@ -84,6 +121,13 @@ export class CreatePage implements OnInit {
             if (url) {
               this.pimg = url;
               this.isUploading = false;
+              this.isUploaded = true;
+              if (this.isUploading == false) {
+                aniDiv.style.display = 'none';
+              }
+              if (this.nameExists) {
+                this.enableButton();
+              }
             }
             console.log(this.pimg);
           });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ModalController } from '@ionic/angular';
+import { truncate } from 'fs';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { PlaylistService } from 'src/app/services/playlist.service';
@@ -21,7 +22,9 @@ export class EditPage implements OnInit {
   downloadURL: Observable<string>;
 
   isUploading: boolean = false;
-
+  isUploaded: boolean = true;
+  nameExists: boolean = false;
+  isDisabled: boolean = true;
   constructor(
     public modalController: ModalController,
     private playlistService: PlaylistService,
@@ -42,13 +45,34 @@ export class EditPage implements OnInit {
     });
   }
 
+  checkNameEnable(event) {
+    if (event.target.value == undefined || event.target.value == '') {
+      this.nameExists = false;
+      this.disableButton();
+    } else {
+      this.nameExists = true;
+      if (this.isUploaded) {
+        this.enableButton();
+      }
+    }
+    console.log(this.isDisabled);
+  }
+
+  enableButton() {
+    this.isDisabled = false;
+  }
+
+  disableButton() {
+    this.isDisabled = true;
+  }
+
   editPlaylist(name, type) {
     console.log('currentUser', this.currentUser);
 
     const updatedPlaylist = {
       pimg: this.pimg,
       pname: name.value,
-      ptype: type.value,
+      ptype: type.value
     };
 
     console.log('NewPL', updatedPlaylist);
@@ -68,6 +92,11 @@ export class EditPage implements OnInit {
 
   onFileSelected(event) {
     this.isUploading = true;
+    const aniDiv = document.getElementById('loader-overlay');
+    if (this.isUploading) {
+      aniDiv.style.display = 'flex';
+    }
+
     var n = Date.now();
     const file = event.target.files[0];
     const filePath = `PlaylistsImages/${n}`;
@@ -82,6 +111,13 @@ export class EditPage implements OnInit {
             if (url) {
               this.pimg = url;
               this.isUploading = false;
+              this.isUploaded = true;
+              if (this.isUploading == false) {
+                aniDiv.style.display = 'none';
+              }
+              if (this.nameExists) {
+                this.enableButton();
+              }
             }
             console.log(this.pimg);
           });

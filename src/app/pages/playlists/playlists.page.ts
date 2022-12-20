@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
-import { AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
+import {
+  AlertController,
+  IonRouterOutlet,
+  ModalController,
+  ToastController
+} from '@ionic/angular';
 import { Playlist } from 'src/app/interfaces/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { AddPlaylistPage } from '../add-playlist/add-playlist.page';
 import { SharePage } from '../share/share.page';
 import { CreatePage } from './create/create.page';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-playlists',
@@ -18,8 +27,12 @@ import { CreatePage } from './create/create.page';
 export class PlaylistsPage implements OnInit {
   username: any = null;
   userimg: any = null;
+  userUId: any = null;
   playlists: any;
   currentUser: any;
+
+  isUploading: boolean = false;
+  downloadURL: Observable<string>;
 
   constructor(
     public modalController: ModalController,
@@ -28,8 +41,11 @@ export class PlaylistsPage implements OnInit {
     private router: Router,
     private authService: AuthService,
     public playlistService: PlaylistService,
+    public userService: UserService,
+    public toastController: ToastController,
     private afAuth: AngularFireAuth,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private storage: AngularFireStorage
   ) {}
 
   ngOnInit() {
@@ -40,12 +56,61 @@ export class PlaylistsPage implements OnInit {
         .getCurrentUser(this.currentUser.multiFactor.user.uid)
         .subscribe(user => {
           this.currentUser = user.data();
+          this.userUId = this.currentUser.uid;
           this.username = this.currentUser.username;
           this.userimg = this.currentUser.img;
           console.log(this.currentUser);
           this.getPlaylists();
         });
     });
+  }
+
+  onFileSelected(event) {
+    this.isUploading = true;
+    const aniDiv = document.getElementById('animation');
+    if(this.isUploading){
+      aniDiv.style.display = 'flex';
+    }
+
+    var n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `UserProfileImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`UserProfileImages/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.userimg = url;
+              this.uploadProfilePicture();
+              this.presentChangeProfilePictureToast()
+              this.isUploading = false;
+              if(this.isUploading == false){
+                aniDiv.style.display = 'none';
+              }  
+            }
+            console.log(this.userimg);
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
+
+  uploadProfilePicture(){
+    console.log('currentUser', this.currentUser);
+
+    const newProfilePicture = {
+      img: this.userimg
+    }
+
+    this.userService.updateProfilePicture(this.userUId, newProfilePicture);
   }
 
   openDetails(content: Playlist) {
@@ -90,8 +155,8 @@ export class PlaylistsPage implements OnInit {
       inputs: [
         {
           name: 'pid',
-          value: pid,
-        },
+          value: pid
+        }
       ],
       buttons: [
         {
@@ -102,7 +167,8 @@ export class PlaylistsPage implements OnInit {
           handler: () => {
             console.log('Confirm Cancel: blah');
           }
-        }, {
+        },
+        {
           text: 'Eliminar',
           id: 'confirm-button',
           handler: data => {
@@ -114,6 +180,35 @@ export class PlaylistsPage implements OnInit {
 
     await alert.present();
   }
+
+  async presentChangeProfilePictureToast() {
+    const toast = await this.toastController.create({
+      message: 'Foto de perfil actualizada',
+      duration: 3000,
+      position: 'bottom',
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
+
+    const { role } = await toast.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
+  dismiss() {
+    this.modalController.dismiss({
+      dismissed: true
+    });
+  }
+
 
   getPlaylists() {
     const path = 'playlists';

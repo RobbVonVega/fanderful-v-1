@@ -8,6 +8,29 @@
     width: 130px;
     border-radius: 10em;
     overflow: hidden;
+    .upload-label {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      transform: translate(-100%, 0);
+      #file {
+        width: 130px;
+        height: 130px;
+        opacity: 0;
+      }
+    }
+    #animation {
+      display: none;
+      position: relative;
+      left: 0;
+      top: -5px;
+      width: 130px;
+      height: 130px;
+      transform: translate(0, -100%);
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #2a2e32, $alpha: 0.4);
+    }
   }
 }
 
@@ -88,5 +111,3 @@
 .md .prf-description {
   width: 94%;
 }
-
-
